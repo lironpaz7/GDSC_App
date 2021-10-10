@@ -10,7 +10,6 @@ import android.widget.CalendarView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
-import events.Event9102021Fragment
 import events.EventFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,7 +37,6 @@ class CalendarFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var currentDateSelected: String? = null
-    private lateinit var datesTable: HashMap<String, EventFragment>
     private lateinit var cal: Calendar
     private lateinit var currentDateContent: TextView
     private lateinit var calenderUpcomingEvents: TextView
@@ -50,11 +48,6 @@ class CalendarFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        // hashmap of event fragments
-        datesTable = hashMapOf(
-            "9/10/2021" to Event9102021Fragment()
-        )
 
     }
 
@@ -87,7 +80,6 @@ class CalendarFragment : Fragment() {
         currentDateTitle.text = datePresentationFormat
         val dateToday = dateParser.parse(datePresentationFormat)
 
-
         //extract events from firebase
         val db = FirebaseFirestore.getInstance()
         db.collection("events").get().addOnSuccessListener { documents ->
@@ -96,10 +88,6 @@ class CalendarFragment : Fragment() {
                 val dateFormat = doc.id.replace(".", "/")
                 val currentDate = dateParser.parse(dateFormat)
                 allEventsTable[dateFormat] = data.content.toString()
-
-                if (dateToday.equals(currentDate)) {
-                    checkAndUpdateEvent(dateFormat)
-                }
                 if (currentDate.after(dateToday)) {
                     data.date = dateFormat
                     data.dateFormat = currentDate
@@ -110,6 +98,8 @@ class CalendarFragment : Fragment() {
 //                Toast.makeText(context, doc.id, Toast.LENGTH_SHORT).show()
 
             }
+
+            checkAndUpdateEvent(datePresentationFormat)
 
             // sorts the upcoming events list
             upcomingEventsTable.sortBy {
@@ -126,7 +116,7 @@ class CalendarFragment : Fragment() {
         }
 
         // when choosing a date on calendar
-        calender.setOnDateChangeListener { vi, year, month, day ->
+        calender.setOnDateChangeListener { _, year, month, day ->
             datePresentationFormat = "$day/${month + 1}/$year"
             currentDateSelected = datePresentationFormat
             currentDateTitle.text = datePresentationFormat
@@ -142,9 +132,9 @@ class CalendarFragment : Fragment() {
         // select button
         selectBtn.setOnClickListener {
             if (currentDateSelected != null) {
-                if (currentDateSelected in datesTable) {
+                if (currentDateSelected in allEventsTable) {
                     val navEvent = activity as FragmentNavigation
-                    datesTable[currentDateSelected]?.let { it1 -> navEvent.navigateFrag(it1, true) }
+                    navEvent.navigateFrag(EventFragment(currentDateSelected), true)
                 } else {
                     Toast.makeText(context, "No events found on this date", Toast.LENGTH_SHORT)
                         .show()
