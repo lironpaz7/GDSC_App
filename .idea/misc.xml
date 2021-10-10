@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/activity_events.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/activity_info.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/app_bar_events.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_events.xml" value="0.1" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_scrolling.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_active_users.xml" value="0.22" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_calender.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_event8102021.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_event8_10_2021.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_event9102021.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_forgot.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_gallery.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_index.xml" value="0.22" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_login.xml" value="0.3069216757741348" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_mail.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_mail2.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_profile.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_register.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_slideshow.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/info_fragment.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/nav_header_events.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/activity_events2_drawer.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/events.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/menu_info.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

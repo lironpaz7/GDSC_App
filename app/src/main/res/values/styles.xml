@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="AppThemeBase" parent="Theme.GDSC_App.NoActionBar">
+        <item name="android:forceDarkAllowed">false</item>
+
+    </style>
+</resources>
