@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.gdsc_app.EventsData
 import com.example.gdsc_app.R
+import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,7 +41,17 @@ class EventFragment(private var date: String?) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_event, container, false)
         val eventTitle = view.findViewById<TextView>(R.id.event_title)
+        val eventConent = view.findViewById<TextView>(R.id.event_content)
         eventTitle.text = date
+
+        val docName = date!!.replace("/", ".")
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("events").document(docName).get().addOnSuccessListener { document ->
+            val doc = document.toObject(EventsData::class.java)
+            eventConent.text = doc!!.content
+        }
+
         return view
     }
 

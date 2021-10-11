@@ -1,18 +1,6 @@
 <resources>
     <string name="app_name">GDSC Technion</string>
-    <string name="title_activity_events">EventsActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_event1">Event 1</string>
-    <string name="menu_event2">Event 2</string>
-    <string name="menu_event3">Event 3</string>
-
-    <string name="text_home">Event 1</string>
     <string name="title_activity_info">Information</string>
     <string name="large_text">
         "Google Developer Student Clubs (GDSC) are community groups for college and university students interested in Google developer technologies. Students from all undergraduate or graduate programs with an interest in growing as a developer are welcome. By joining a GDSC, students grow their knowledge in a peer-to-peer learning environment and build solutions for local businesses and their community."
@@ -29,6 +17,6 @@
     <string name="log_out">Log Out</string>
     <string name="back_to_login">Back</string>
     <string name="clear">CLEAR</string>
-    <string name="versionNumber">1.0.9</string>
+    <string name="versionNumber">1.1.0</string>
     <string name="reset_password">reset</string>
 </resources>

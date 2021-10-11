@@ -1,6 +1,7 @@
 package com.example.gdsc_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ private const val ARG_PARAM2 = "param2"
 
 data class EventsData(
     var date: String? = null,
+    var title: String? = null,
     var content: String? = null,
     var dateFormat: Date? = null
 )
@@ -85,18 +87,15 @@ class CalendarFragment : Fragment() {
         db.collection("events").get().addOnSuccessListener { documents ->
             for (doc in documents) {
                 val data = doc.toObject(EventsData::class.java)
+//                Log.d("@@@@@@@@", data.content.toString())
                 val dateFormat = doc.id.replace(".", "/")
                 val currentDate = dateParser.parse(dateFormat)
-                allEventsTable[dateFormat] = data.content.toString()
+                allEventsTable[dateFormat] = data.title.toString()
+                data.date = dateFormat
+                data.dateFormat = currentDate
                 if (currentDate.after(dateToday)) {
-                    data.date = dateFormat
-                    data.dateFormat = currentDate
                     upcomingEventsTable.add(data)
                 }
-//                Log.d("dateFormat", dateFormat)
-//                Log.d("content", data.content.toString())
-//                Toast.makeText(context, doc.id, Toast.LENGTH_SHORT).show()
-
             }
 
             checkAndUpdateEvent(datePresentationFormat)
@@ -109,7 +108,7 @@ class CalendarFragment : Fragment() {
             //update upcoming events
             val textTmp = StringBuilder()
             for (event in upcomingEventsTable) {
-                textTmp.append("${event.date}: ${event.content}\n")
+                textTmp.append("${event.date}: ${event.title}\n")
             }
             calenderUpcomingEvents.text = textTmp.toString()
 
