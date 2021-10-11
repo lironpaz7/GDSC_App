@@ -14,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GDSC_App">
         <activity
-            android:name=".EventsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_events"
-            android:theme="@style/Theme.GDSC_App.NoActionBar" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
