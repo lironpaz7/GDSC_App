@@ -100,17 +100,21 @@ class CalendarFragment : Fragment() {
 
             checkAndUpdateEvent(datePresentationFormat)
 
-            // sorts the upcoming events list
-            upcomingEventsTable.sortBy {
-                it.dateFormat
-            }
+            if (upcomingEventsTable.isEmpty()) {
+                calenderUpcomingEvents.text = "No upcoming events"
+            } else {
+                // sorts the upcoming events list
+                upcomingEventsTable.sortBy {
+                    it.dateFormat
+                }
 
-            //update upcoming events
-            val textTmp = StringBuilder()
-            for (event in upcomingEventsTable) {
-                textTmp.append("${event.date}: ${event.title}\n")
+                //update upcoming events
+                val textTmp = StringBuilder()
+                for (event in upcomingEventsTable) {
+                    textTmp.append("${event.date}: ${event.title}\n")
+                }
+                calenderUpcomingEvents.text = textTmp.toString()
             }
-            calenderUpcomingEvents.text = textTmp.toString()
 
         }
 
