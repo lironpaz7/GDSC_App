@@ -50,6 +50,15 @@
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <Button
+                android:id="@+id/calendar_today_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/calendar_select_btn"
+                app:layout_constraintRight_toLeftOf="@id/calendar_back_btn" />
+
+            <Button
                 android:id="@+id/calendar_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

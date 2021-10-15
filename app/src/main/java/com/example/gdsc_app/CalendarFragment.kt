@@ -1,7 +1,6 @@
 package com.example.gdsc_app
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +64,7 @@ class CalendarFragment : Fragment() {
         cal = Calendar.getInstance()
         val calender = view.findViewById<CalendarView>(R.id.calendar)
         val backBtn = view.findViewById<Button>(R.id.calendar_back_btn)
+        val todayBtn = view.findViewById<Button>(R.id.calendar_today_btn)
         val selectBtn = view.findViewById<Button>(R.id.calendar_select_btn)
 
         val upcomingEventsTable = ArrayList<EventsData>()
@@ -78,9 +78,9 @@ class CalendarFragment : Fragment() {
         val day = cal.get(Calendar.DAY_OF_MONTH)
         val month = cal.get(Calendar.MONTH)
         val year = cal.get(Calendar.YEAR)
-        var datePresentationFormat = "$day/${month + 1}/$year"
-        currentDateTitle.text = datePresentationFormat
-        val dateToday = dateParser.parse(datePresentationFormat)
+        var todayPresentationFormat = "$day/${month + 1}/$year"
+        currentDateTitle.text = todayPresentationFormat
+        val dateToday = dateParser.parse(todayPresentationFormat)
 
         //extract events from firebase
         val db = FirebaseFirestore.getInstance()
@@ -98,7 +98,7 @@ class CalendarFragment : Fragment() {
                 }
             }
 
-            checkAndUpdateEvent(datePresentationFormat)
+            checkAndUpdateEvent(todayPresentationFormat)
 
             if (upcomingEventsTable.isEmpty()) {
                 calenderUpcomingEvents.text = "No upcoming events"
@@ -120,10 +120,18 @@ class CalendarFragment : Fragment() {
 
         // when choosing a date on calendar
         calender.setOnDateChangeListener { _, year, month, day ->
-            datePresentationFormat = "$day/${month + 1}/$year"
-            currentDateSelected = datePresentationFormat
-            currentDateTitle.text = datePresentationFormat
-            checkAndUpdateEvent(datePresentationFormat)
+            val presentationFormat = "$day/${month + 1}/$year"
+            currentDateSelected = presentationFormat
+            currentDateTitle.text = presentationFormat
+            checkAndUpdateEvent(presentationFormat)
+        }
+
+        // today button
+        todayBtn.setOnClickListener {
+            calender.setDate(Calendar.getInstance().timeInMillis, true, false)
+            currentDateSelected = todayPresentationFormat
+            currentDateTitle.text = todayPresentationFormat
+            checkAndUpdateEvent(todayPresentationFormat)
         }
 
         // back button
