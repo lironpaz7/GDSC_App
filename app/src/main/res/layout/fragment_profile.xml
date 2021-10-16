@@ -76,7 +76,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_username_title"
@@ -103,7 +103,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_age_title"
@@ -129,16 +129,16 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_degree_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="Degree: "
                 android:textColor="@color/black" />
 
@@ -146,19 +146,45 @@
                 android:id="@+id/profile_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/profile_degree_title"
                 android:enabled="false"
-                android:inputType="text"
-                android:lines="1"
                 android:text=""
                 android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/profile_arrow_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/profile_degree"
+                android:scaleType="fitXY"
+                android:src="@drawable/arrow_down" />
+            <!--            <EditText-->
+            <!--                android:id="@+id/profile_degree"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:layout_toEndOf="@id/profile_degree_title"-->
+            <!--                android:enabled="false"-->
+            <!--                android:inputType="text"-->
+            <!--                android:lines="1"-->
+            <!--                android:text=""-->
+            <!--                android:textColor="@color/black" />-->
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_degreeYear_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
                 android:text="Year: "
                 android:textColor="@color/black" />
 
@@ -173,14 +199,12 @@
                 android:lines="1"
                 android:text=""
                 android:textColor="@color/black" />
-
-
-        </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_interests_title"
@@ -207,7 +231,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/profile_shareMyProfile_title"

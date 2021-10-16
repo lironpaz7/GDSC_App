@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DegreesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Degree"
+            android:textAlignment="center"
+            android:textSize="26dp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/degrees_c1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/degrees_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Data Science"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

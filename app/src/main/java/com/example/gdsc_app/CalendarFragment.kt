@@ -1,5 +1,7 @@
 package com.example.gdsc_app
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,7 +27,8 @@ data class EventsData(
     var date: String? = null,
     var title: String? = null,
     var content: String? = null,
-    var dateFormat: Date? = null
+    var dateFormat: Date? = null,
+    var url: String? = null
 )
 
 /**
@@ -41,7 +44,8 @@ class CalendarFragment : Fragment() {
     private lateinit var cal: Calendar
     private lateinit var currentDateContent: TextView
     private lateinit var calenderUpcomingEvents: TextView
-    private var allEventsTable: HashMap<String, String> = HashMap()
+    private var allEventsDateTable: HashMap<String, String> = HashMap()
+    private var allEventsTable: HashMap<String, EventsData> = HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +94,8 @@ class CalendarFragment : Fragment() {
 //                Log.d("@@@@@@@@", data.content.toString())
                 val dateFormat = doc.id.replace(".", "/")
                 val currentDate = dateParser.parse(dateFormat)
-                allEventsTable[dateFormat] = data.title.toString()
+                allEventsDateTable[dateFormat] = data.title.toString()
+                allEventsTable[dateFormat] = data
                 data.date = dateFormat
                 data.dateFormat = currentDate
                 if (currentDate.after(dateToday)) {
@@ -143,9 +148,16 @@ class CalendarFragment : Fragment() {
         // select button
         selectBtn.setOnClickListener {
             if (currentDateSelected != null) {
-                if (currentDateSelected in allEventsTable) {
-                    val navEvent = activity as FragmentNavigation
-                    navEvent.navigateFrag(EventFragment(currentDateSelected), true)
+                if (currentDateSelected in allEventsDateTable) {
+                    if (allEventsTable[currentDateSelected]?.url != null) {
+                        val url = allEventsTable[currentDateSelected]?.url
+                        val i = Intent(Intent.ACTION_VIEW)
+                        i.data = Uri.parse(url)
+                        startActivity(i)
+                    } else {
+                        val navEvent = activity as FragmentNavigation
+                        navEvent.navigateFrag(EventFragment(currentDateSelected), true)
+                    }
                 } else {
                     Toast.makeText(context, "No events found on this date", Toast.LENGTH_SHORT)
                         .show()
@@ -160,8 +172,8 @@ class CalendarFragment : Fragment() {
     }
 
     private fun checkAndUpdateEvent(date: String) {
-        if (date in allEventsTable) {
-            currentDateContent.text = allEventsTable[date]
+        if (date in allEventsDateTable) {
+            currentDateContent.text = allEventsDateTable[date]
         } else {
             currentDateContent.text = "No events"
         }

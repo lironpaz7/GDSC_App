@@ -17,6 +17,6 @@
     <string name="log_out">Log Out</string>
     <string name="back_to_login">Back</string>
     <string name="clear">CLEAR</string>
-    <string name="versionNumber">1.1.0</string>
+    <string name="versionNumber">1.1.1</string>
     <string name="reset_password">reset</string>
 </resources>

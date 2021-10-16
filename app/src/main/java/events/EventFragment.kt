@@ -45,7 +45,6 @@ class EventFragment(private var date: String?) : Fragment() {
         eventTitle.text = date
 
         val docName = date!!.replace("/", ".")
-
         val db = FirebaseFirestore.getInstance()
         db.collection("events").document(docName).get().addOnSuccessListener { document ->
             val doc = document.toObject(EventsData::class.java)

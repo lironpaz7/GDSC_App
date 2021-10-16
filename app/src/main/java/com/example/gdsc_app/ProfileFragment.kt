@@ -14,6 +14,7 @@ import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.isVisible
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -49,7 +50,7 @@ data class User(
 
 )
 
-class ProfileFragment : Fragment() {
+class ProfileFragment(val choice: String? = null) : Fragment() {
     // TODO: Rename and change types of parameters
 
     private var param1: String? = null
@@ -98,10 +99,26 @@ class ProfileFragment : Fragment() {
 
         profilePictureRef = view.findViewById(R.id.profile_picture)
         userEmail = fAuth.currentUser?.email.toString()
+//        var spinnerChoice = ""
+//        val degrees = arrayListOf(
+//            "Data Science",
+//            "Computer Science",
+//            "Electrical Engineering",
+//            "Information Systems",
+//            "Mathematics",
+//            "Physics",
+//            "Biology",
+//            "Other"
+//        )
+
 
         // buttons and Textview
         val saveButton = view.findViewById<ImageButton>(R.id.profile_save_btn)
         saveButton.isEnabled = false
+
+        val arrowButton = view.findViewById<ImageView>(R.id.profile_arrow_btn)
+        arrowButton.isEnabled = false
+        arrowButton.isVisible = false
 
         val shareMyInfoButton = view.findViewById<SwitchCompat>(R.id.profile_shareInfoButton)
         shareMyInfoButton.alpha = ALPHA_OFF
@@ -179,7 +196,73 @@ class ProfileFragment : Fragment() {
                 Log.d("@@@@@@@@@@@@@@@@@@", "true")
                 setDefaultProfilePicture()
             }
+
         }
+
+        if (choice != null) {
+            // set enabled on
+            textName.isEnabled = true
+            textAge.isEnabled = true
+            textInterests.isEnabled = true
+            textDegreeYear.isEnabled = true
+
+
+            // arrow btn enable
+            arrowButton.isEnabled = true
+            arrowButton.isVisible = true
+
+            // edit picture btn enable
+            editPictureButton.isEnabled = true
+            editPictureButton.visibility = View.VISIBLE
+
+            // abort btn enable
+            abortButton.isEnabled = true
+            abortButton.visibility = View.VISIBLE
+
+            // shareInfo btn enable
+            shareMyInfoButton.isClickable = true
+            shareMyInfoButton.alpha = ALPHA_ON
+
+            // default picture btn enable
+            defaultProfileBtn.visibility = View.VISIBLE
+            defaultProfileBtn.isEnabled = true
+
+            // save button enable
+            saveButton.visibility = View.VISIBLE
+            saveButton.isEnabled = true
+
+            // edit button disable
+            editButton.alpha = ALPHA_OFF
+            editButton.isEnabled = false
+        }
+
+
+        // spinner drop down list
+//        val degreeSpinner = view.findViewById<Spinner>(R.id.profile_degree_spinner)
+//        degreeSpinner.isEnabled = false
+//        if (degreeSpinner != null) {
+//            val adapter =
+//                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, degrees)
+//            degreeSpinner.adapter = adapter
+//
+//            degreeSpinner.onItemSelectedListener = object :
+//                AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    spinnerChoice = degrees[position]
+//                    textDegree.setText(spinnerChoice)
+//
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//                }
+//            }
+//        }
 
         // shareMyInfo button
 
@@ -191,6 +274,11 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        // arrow button - degrees picker
+        arrowButton.setOnClickListener {
+            val navDegreesPicker = activity as FragmentNavigation
+            navDegreesPicker.navigateFrag(DegreesFragment(), true)
+        }
         // edit button
         editButton.setOnClickListener {
 
@@ -207,9 +295,12 @@ class ProfileFragment : Fragment() {
             textName.isEnabled = true
             textAge.isEnabled = true
             textInterests.isEnabled = true
-            textDegree.isEnabled = true
             textDegreeYear.isEnabled = true
 
+
+            // arrow btn enable
+            arrowButton.isEnabled = true
+            arrowButton.isVisible = true
 
             // edit picture btn enable
             editPictureButton.isEnabled = true
@@ -255,9 +346,11 @@ class ProfileFragment : Fragment() {
             textName.isEnabled = false
             textAge.isEnabled = false
             textInterests.isEnabled = false
-            textDegree.isEnabled = false
             textDegreeYear.isEnabled = false
 
+            // arrow button disable
+            arrowButton.isEnabled = false
+            arrowButton.isVisible = false
 
             // edit picture btn disable
             editPictureButton.isEnabled = false
@@ -302,8 +395,11 @@ class ProfileFragment : Fragment() {
             textName.isEnabled = false
             textAge.isEnabled = false
             textInterests.isEnabled = false
-            textDegree.isEnabled = false
             textDegreeYear.isEnabled = false
+
+            // arrow button disable
+            arrowButton.isEnabled = false
+            arrowButton.isVisible = false
 
             // edit button enable
             editButton.alpha = ALPHA_ON
@@ -339,7 +435,9 @@ class ProfileFragment : Fragment() {
 
             doc.age = textAge.text.toString()
             doc.interests = textInterests.text.toString()
-            doc.degree = textDegree.text.toString()
+            if (choice != null) {
+                doc.degree = choice
+            }
             doc.degreeYear = textDegreeYear.text.toString()
 
             // update Firestore
