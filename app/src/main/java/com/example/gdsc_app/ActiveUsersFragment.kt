@@ -67,9 +67,9 @@ class ActiveUsersFragment : Fragment() {
                         if (doc.age != null) {
                             textTmp.append("\tAge: ${doc.age}\n")
                             if (doc.degree != null && doc.degree != "") {
-                                textTmp.append("\tDegree: ${doc.degree}")
+                                textTmp.append("\tDegree: ${doc.degree}\n")
                                 if (doc.degreeYear != null && doc.degreeYear != "") {
-                                    textTmp.append(", Year: ${doc.degreeYear}")
+                                    textTmp.append("\tYear: ${doc.degreeYear}")
                                 }
                                 textTmp.append("\n")
                             }

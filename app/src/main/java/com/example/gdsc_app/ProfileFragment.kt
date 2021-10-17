@@ -6,10 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -99,17 +97,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         profilePictureRef = view.findViewById(R.id.profile_picture)
         userEmail = fAuth.currentUser?.email.toString()
-//        var spinnerChoice = ""
-//        val degrees = arrayListOf(
-//            "Data Science",
-//            "Computer Science",
-//            "Electrical Engineering",
-//            "Information Systems",
-//            "Mathematics",
-//            "Physics",
-//            "Biology",
-//            "Other"
-//        )
 
 
         // buttons and Textview
@@ -199,70 +186,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         }
 
-        if (choice != null) {
-            // set enabled on
-            textName.isEnabled = true
-            textAge.isEnabled = true
-            textInterests.isEnabled = true
-            textDegreeYear.isEnabled = true
-
-
-            // arrow btn enable
-            arrowButton.isEnabled = true
-            arrowButton.isVisible = true
-
-            // edit picture btn enable
-            editPictureButton.isEnabled = true
-            editPictureButton.visibility = View.VISIBLE
-
-            // abort btn enable
-            abortButton.isEnabled = true
-            abortButton.visibility = View.VISIBLE
-
-            // shareInfo btn enable
-            shareMyInfoButton.isClickable = true
-            shareMyInfoButton.alpha = ALPHA_ON
-
-            // default picture btn enable
-            defaultProfileBtn.visibility = View.VISIBLE
-            defaultProfileBtn.isEnabled = true
-
-            // save button enable
-            saveButton.visibility = View.VISIBLE
-            saveButton.isEnabled = true
-
-            // edit button disable
-            editButton.alpha = ALPHA_OFF
-            editButton.isEnabled = false
-        }
-
-
-        // spinner drop down list
-//        val degreeSpinner = view.findViewById<Spinner>(R.id.profile_degree_spinner)
-//        degreeSpinner.isEnabled = false
-//        if (degreeSpinner != null) {
-//            val adapter =
-//                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, degrees)
-//            degreeSpinner.adapter = adapter
-//
-//            degreeSpinner.onItemSelectedListener = object :
-//                AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(
-//                    parent: AdapterView<*>?,
-//                    view: View?,
-//                    position: Int,
-//                    id: Long
-//                ) {
-//                    spinnerChoice = degrees[position]
-//                    textDegree.setText(spinnerChoice)
-//
-//                }
-//
-//                override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//                }
-//            }
-//        }
 
         // shareMyInfo button
 
@@ -276,9 +199,105 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         // arrow button - degrees picker
         arrowButton.setOnClickListener {
-            val navDegreesPicker = activity as FragmentNavigation
-            navDegreesPicker.navigateFrag(DegreesFragment(), true)
+            val popupMenu = PopupMenu(context, arrowButton, Gravity.CENTER)
+
+            // menu options
+            popupMenu.menu.add(Menu.NONE, 1, 1, "Data Science and Engineering")
+            popupMenu.menu.add(Menu.NONE, 2, 2, "Computer Science")
+            popupMenu.menu.add(Menu.NONE, 3, 3, "Electrical Engineering")
+            popupMenu.menu.add(Menu.NONE, 4, 4, "Information Systems Engineering")
+            popupMenu.menu.add(Menu.NONE, 5, 5, "Industrial Engineering")
+            popupMenu.menu.add(Menu.NONE, 6, 6, "Biology")
+            popupMenu.menu.add(Menu.NONE, 7, 7, "Mathematics")
+            popupMenu.menu.add(Menu.NONE, 8, 8, "Physics")
+            popupMenu.menu.add(Menu.NONE, 9, 9, "Medicine")
+            popupMenu.menu.add(Menu.NONE, 10, 10, "Mechanical Engineering")
+            popupMenu.menu.add(Menu.NONE, 11, 11, "Civil and Environmental Engineering")
+            popupMenu.menu.add(Menu.NONE, 12, 12, "Chemistry")
+            popupMenu.menu.add(Menu.NONE, 13, 13, "Biotechnology and Food Engineering")
+            popupMenu.menu.add(Menu.NONE, 14, 14, "Biomedical Engineering")
+            popupMenu.menu.add(Menu.NONE, 15, 15, "Aerospace Engineering")
+            popupMenu.menu.add(Menu.NONE, 16, 16, "Education in Science and Technology")
+            popupMenu.menu.add(Menu.NONE, 17, 17, "Other")
+
+            popupMenu.show()
+
+            popupMenu.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    1 -> {
+                        doc.degree = popupMenu.menu.getItem(0).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(0).title.toString())
+                    }
+                    2 -> {
+                        doc.degree = popupMenu.menu.getItem(1).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(1).title.toString())
+                    }
+                    3 -> {
+                        doc.degree = popupMenu.menu.getItem(2).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(2).title.toString())
+                    }
+                    4 -> {
+                        doc.degree = popupMenu.menu.getItem(3).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(3).title.toString())
+                    }
+                    5 -> {
+                        doc.degree = popupMenu.menu.getItem(4).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(4).title.toString())
+                    }
+                    6 -> {
+                        doc.degree = popupMenu.menu.getItem(5).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(5).title.toString())
+                    }
+                    7 -> {
+                        doc.degree = popupMenu.menu.getItem(6).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(6).title.toString())
+                    }
+                    8 -> {
+                        doc.degree = popupMenu.menu.getItem(7).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(7).title.toString())
+                    }
+                    9 -> {
+                        doc.degree = popupMenu.menu.getItem(8).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(8).title.toString())
+                    }
+                    10 -> {
+                        doc.degree = popupMenu.menu.getItem(9).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(9).title.toString())
+                    }
+                    11 -> {
+                        doc.degree = popupMenu.menu.getItem(10).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(10).title.toString())
+                    }
+                    12 -> {
+                        doc.degree = popupMenu.menu.getItem(11).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(11).title.toString())
+                    }
+                    13 -> {
+                        doc.degree = popupMenu.menu.getItem(12).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(12).title.toString())
+                    }
+                    14 -> {
+                        doc.degree = popupMenu.menu.getItem(13).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(13).title.toString())
+                    }
+                    15 -> {
+                        doc.degree = popupMenu.menu.getItem(14).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(14).title.toString())
+                    }
+                    16 -> {
+                        doc.degree = popupMenu.menu.getItem(15).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(15).title.toString())
+                    }
+                    17 -> {
+                        doc.degree = popupMenu.menu.getItem(16).title.toString()
+                        textDegree.setText(popupMenu.menu.getItem(16).title.toString())
+                    }
+                }
+                true
+            }
+
         }
+
         // edit button
         editButton.setOnClickListener {
 

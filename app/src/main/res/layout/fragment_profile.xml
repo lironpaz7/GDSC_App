@@ -142,24 +142,24 @@
                 android:text="Degree: "
                 android:textColor="@color/black" />
 
+            <ImageView
+                android:id="@+id/profile_arrow_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/profile_degree_title"
+                android:scaleType="fitXY"
+                android:src="@drawable/list_pick" />
+
             <EditText
                 android:id="@+id/profile_degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/profile_degree_title"
+                android:layout_toEndOf="@id/profile_arrow_btn"
                 android:enabled="false"
                 android:text=""
                 android:textColor="@color/black" />
-
-            <ImageView
-                android:id="@+id/profile_arrow_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/profile_degree"
-                android:scaleType="fitXY"
-                android:src="@drawable/arrow_down" />
             <!--            <EditText-->
             <!--                android:id="@+id/profile_degree"-->
             <!--                android:layout_width="wrap_content"-->
