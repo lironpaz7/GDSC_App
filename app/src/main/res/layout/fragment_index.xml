@@ -124,7 +124,7 @@
             app:layout_constraintLeft_toRightOf="@id/solution_challenge_button"
             app:layout_constraintRight_toLeftOf="@id/eventsButton"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/info_button_1" />
+            app:srcCompat="@drawable/info_button" />
 
         <TextView
             android:id="@+id/infoText"
