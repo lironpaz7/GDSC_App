@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="11dp"
+            android:fontFamily="sans-serif-light"
             android:text="@string/gdsc_technion_login_page"
             android:textColor="@color/white"
             android:textSize="30sp" />
