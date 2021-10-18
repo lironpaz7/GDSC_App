@@ -28,7 +28,7 @@ import java.lang.Exception
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 const val ALPHA_ON = 1.0f
-const val ALPHA_OFF = 0.3f
+const val ALPHA_OFF = 0.2f
 const val TECHNION_MAIL = "campus.technion.ac.il"
 const val MAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 

@@ -76,11 +76,10 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         getContent =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-                profilePictureRef.setImageURI(uri)
                 if (uri != null) {
+                    profilePictureRef.setImageURI(uri)
                     uriRef = uri
-                    val path = uriRef!!.path.toString()
-                    Log.d("URI_LOCAL", path)
+//                    Log.d("URI_LOCAL", path)
                 }
             }
 
@@ -170,8 +169,7 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
             shareMyInfoButton.isChecked = doc.shareMyInfo == "yes"
 
             // updates profile picture
-            if (doc.imagePath != null) {
-                Log.d("@@@@@@@@@@@@@@@@@@", "false")
+            if (doc.imagePath != null && doc.imagePath != "null") {
                 val sRef = storageReference.child(doc.imagePath.toString())
                 val localFile = File.createTempFile("tempImage", "jpg")
                 sRef.getFile(localFile).addOnSuccessListener {
@@ -180,7 +178,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
                 }.addOnFailureListener {
                 }
             } else {
-                Log.d("@@@@@@@@@@@@@@@@@@", "true")
                 setDefaultProfilePicture()
             }
 
@@ -520,7 +517,7 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
                 if (progressDialog.isShowing) {
                     progressDialog.dismiss()
                 }
-//                    val downloadUri = task.result
+
                 addUploadRecord("profile_images/$userEmail")
             }
         }.addOnFailureListener {
@@ -561,5 +558,3 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
             }
     }
 }
-
-

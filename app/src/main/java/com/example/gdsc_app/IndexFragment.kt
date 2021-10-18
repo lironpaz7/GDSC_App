@@ -1,5 +1,6 @@
 package com.example.gdsc_app
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,10 +44,7 @@ class IndexFragment : Fragment() {
             param2 = it.getString(
                 ARG_PARAM2
             )
-
         }
-
-
     }
 
     override fun onCreateView(
@@ -58,13 +59,34 @@ class IndexFragment : Fragment() {
         // extract user name to display on screen
         fAuth = FirebaseAuth.getInstance()
         var userName = fAuth.currentUser?.email.toString()
+        val storageReference = FirebaseStorage.getInstance().reference
         userName = userName.substring(0, userName.indexOf("@"))
         displayUser = "Welcome " + userName
         view.findViewById<TextView>(R.id.userNameTitle).setText(displayUser)
 
+        // change profile picture
+        val profilePicture = view.findViewById<ImageView>(R.id.profileButton)
+        val docId = fAuth.currentUser?.email.toString()
+        val userNameFromMail = docId.substring(0, docId.indexOf("@"))
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users").document(docId).get().addOnSuccessListener { docSnap ->
+            //get data class object for easy data assignment
+            val doc = docSnap.toObject(User::class.java)!!
+            if (doc.imagePath != null && doc.imagePath != "null") {
+                val sRef = storageReference.child(doc.imagePath.toString())
+                val localFile = File.createTempFile("tempImage", "jpg")
+                sRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    profilePicture.setImageBitmap(bitmap)
+                }.addOnFailureListener {
+                }
+            } else {
+                profilePicture.setImageResource(R.drawable.profile)
+            }
+        }
 
         //profile button
-        view.findViewById<ImageButton>(R.id.profileButton).setOnClickListener {
+        view.findViewById<ImageView>(R.id.profileButton).setOnClickListener {
 //            Toast.makeText(context, "Contact will be available soon...", Toast.LENGTH_SHORT).show()
             var navIndex = activity as FragmentNavigation
             navIndex.navigateFrag(ProfileFragment(), true)
@@ -80,11 +102,15 @@ class IndexFragment : Fragment() {
 //            Toast.makeText(context, "Events will be available soon...", Toast.LENGTH_SHORT).show()
             var navEvents = activity as FragmentNavigation
             navEvents.navigateFrag(CalendarFragment(), true)
+        }
 
-
-//            val intent = Intent(requireActivity(), EventsActivity::class.java)
-//            startActivity(intent)
-
+        // solution challenge button
+        view.findViewById<ImageButton>(R.id.solution_challenge_button).setOnClickListener {
+            Toast.makeText(
+                context,
+                "Solution Challenge will be available soon...",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         // logout button

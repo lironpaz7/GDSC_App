@@ -1,175 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background_4"
+    android:orientation="vertical"
     tools:context=".IndexFragment">
 
-
-    <ImageView
-        android:id="@+id/gdscLogo"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#002196F3"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gdscTitle"
-        app:srcCompat="@drawable/gdsc" />
-
-    <ImageView
-        android:id="@+id/technionLogo"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/infoText"
-        app:srcCompat="@drawable/technion_logo" />
-
-    <ImageButton
-        android:id="@+id/profileButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/infoButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gdscLogo"
-        app:srcCompat="@drawable/profile" />
-
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/eventsButton"
-        app:layout_constraintStart_toEndOf="@id/profileButton"
-        app:layout_constraintTop_toBottomOf="@+id/gdscLogo"
-        app:srcCompat="@drawable/info_button_1" />
-
-    <ImageButton
-        android:id="@+id/eventsButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoButton"
-        app:layout_constraintTop_toBottomOf="@+id/gdscLogo"
-        app:srcCompat="@drawable/events_button" />
-
-    <TextView
-        android:id="@+id/mailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="35dp"
-        android:text="Profile"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/infoText"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileButton"
-        app:layout_constraintVertical_bias="0.767" />
-
-    <TextView
-        android:id="@+id/eventsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="5dp"
-        android:text="Events"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoText"
-        app:layout_constraintTop_toBottomOf="@+id/eventsButton" />
-
-    <TextView
-        android:id="@+id/infoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:text="Info"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/eventsText"
-        app:layout_constraintStart_toEndOf="@+id/mailText"
-        app:layout_constraintTop_toBottomOf="@+id/infoButton" />
-
-    <TextView
-        android:id="@+id/userNameTitle"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:id="@+id/userNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="username@gmail.com"
+            android:textColor="#00000F"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameTitle"
+            app:srcCompat="@drawable/profile" />
+
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_out"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/gdscTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="cursive"
+            android:text="GDSC\nTechnion"
+            android:textAlignment="center"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/gdscLogo"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#002196F3"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/gdsc" />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="start"
-        android:text="username@gmail.com"
-        android:textColor="#00000F"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/gdscTitle"
-        android:layout_width="wrap_content"
+
+        <ImageButton
+            android:id="@+id/solution_challenge_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/infoButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/android" />
+
+        <TextView
+            android:id="@+id/solutionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solution\nChallenge"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/solution_challenge_button"
+            app:layout_constraintRight_toRightOf="@id/solution_challenge_button"
+            app:layout_constraintTop_toBottomOf="@id/solution_challenge_button" />
+
+        <ImageButton
+            android:id="@+id/infoButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toRightOf="@id/solution_challenge_button"
+            app:layout_constraintRight_toLeftOf="@id/eventsButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/info_button_1" />
+
+        <TextView
+            android:id="@+id/infoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/infoButton"
+            app:layout_constraintRight_toRightOf="@id/infoButton"
+            app:layout_constraintTop_toBottomOf="@id/infoButton" />
+
+        <ImageButton
+            android:id="@+id/eventsButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toRightOf="@id/infoButton"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/events_button" />
+
+
+        <TextView
+            android:id="@+id/eventsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Events"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/eventsButton"
+            app:layout_constraintRight_toRightOf="@id/eventsButton"
+            app:layout_constraintTop_toBottomOf="@id/eventsButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="cursive"
-        android:text="GDSC\nTechnion"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_logout" />
+        android:layout_marginTop="10dp">
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/log_out"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/technionLogo"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/technion_logo" />
+    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

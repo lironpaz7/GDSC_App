@@ -33,15 +33,15 @@
         </RelativeLayout>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/lock_icon" />
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/gdsc" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="11dp"
+            android:layout_margin="5dp"
             android:text="@string/gdsc_technion_login_page"
             android:textColor="@color/white"
             android:textSize="30sp" />
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/username"
             app:boxBackgroundColor="#F8E9FD">
@@ -141,7 +141,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"
@@ -161,11 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/gdsc" />
+
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="130dp"
