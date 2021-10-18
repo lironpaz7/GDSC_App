@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -61,7 +62,7 @@ class IndexFragment : Fragment() {
         var userName = fAuth.currentUser?.email.toString()
         val storageReference = FirebaseStorage.getInstance().reference
         userName = userName.substring(0, userName.indexOf("@"))
-        displayUser = "Welcome " + userName
+        displayUser = "Welcome $userName"
         view.findViewById<TextView>(R.id.userNameTitle).setText(displayUser)
 
         // change profile picture
@@ -92,20 +93,20 @@ class IndexFragment : Fragment() {
             navIndex.navigateFrag(ProfileFragment(), true)
         }
         // info button (fragment)
-        view.findViewById<ImageButton>(R.id.infoButton).setOnClickListener {
+        view.findViewById<AppCompatButton>(R.id.infoButton).setOnClickListener {
             var navIndex = activity as FragmentNavigation
             navIndex.navigateFrag(InfoFragment(), true)
         }
 
         // events button
-        view.findViewById<ImageButton>(R.id.eventsButton).setOnClickListener {
+        view.findViewById<AppCompatButton>(R.id.eventsButton).setOnClickListener {
 //            Toast.makeText(context, "Events will be available soon...", Toast.LENGTH_SHORT).show()
             var navEvents = activity as FragmentNavigation
             navEvents.navigateFrag(CalendarFragment(), true)
         }
 
         // solution challenge button
-        view.findViewById<ImageButton>(R.id.solution_challenge_button).setOnClickListener {
+        view.findViewById<AppCompatButton>(R.id.solution_challenge_button).setOnClickListener {
             Toast.makeText(
                 context,
                 "Solution Challenge will be available soon...",

@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background_4"
+    android:background="#C4E2EF"
     android:orientation="vertical"
     tools:context=".IndexFragment">
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="cursive"
+            android:fontFamily="sans-serif-light"
             android:text="GDSC\nTechnion"
             android:textAlignment="center"
             android:textSize="60sp"
@@ -91,76 +91,76 @@
         android:orientation="horizontal">
 
 
-        <ImageButton
+        <!--        <TextView-->
+        <!--            android:id="@+id/solutionText"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Solution\nChallenge"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="#000000"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintLeft_toLeftOf="@id/solution_challenge_button"-->
+        <!--            app:layout_constraintRight_toRightOf="@id/solution_challenge_button"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/solution_challenge_button" />-->
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/solution_challenge_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="#00FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_google_red"
             android:scaleType="fitCenter"
+            android:text="Solution\nChallenge"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/infoButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/android" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/solutionText"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/infoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Solution\nChallenge"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/solution_challenge_button"
-            app:layout_constraintRight_toRightOf="@id/solution_challenge_button"
-            app:layout_constraintTop_toBottomOf="@id/solution_challenge_button" />
-
-        <ImageButton
-            android:id="@+id/infoButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="#00FFFFFF"
+            android:background="@drawable/rounded_google_green"
             android:scaleType="fitCenter"
+            android:text="Info"
             app:layout_constraintLeft_toRightOf="@id/solution_challenge_button"
             app:layout_constraintRight_toLeftOf="@id/eventsButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/info_button_1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/infoText"
+        <!--        <TextView-->
+        <!--            android:id="@+id/infoText"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Info"-->
+        <!--            android:textColor="#000000"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintLeft_toLeftOf="@id/infoButton"-->
+        <!--            app:layout_constraintRight_toRightOf="@id/infoButton"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/infoButton" />-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/eventsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Info"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/infoButton"
-            app:layout_constraintRight_toRightOf="@id/infoButton"
-            app:layout_constraintTop_toBottomOf="@id/infoButton" />
-
-        <ImageButton
-            android:id="@+id/eventsButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="#00FFFFFF"
+            android:background="@drawable/rounded_google_blue"
             android:scaleType="fitCenter"
+            android:text="Events"
             app:layout_constraintLeft_toRightOf="@id/infoButton"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/events_button" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/eventsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Events"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/eventsButton"
-            app:layout_constraintRight_toRightOf="@id/eventsButton"
-            app:layout_constraintTop_toBottomOf="@id/eventsButton" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/eventsText"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Events"-->
+        <!--            android:textColor="#000000"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintLeft_toLeftOf="@id/eventsButton"-->
+        <!--            app:layout_constraintRight_toRightOf="@id/eventsButton"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/eventsButton" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -168,7 +168,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/technionLogo"
