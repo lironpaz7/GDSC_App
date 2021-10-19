@@ -1,4 +1,4 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage

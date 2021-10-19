@@ -1,4 +1,4 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
 import android.widget.Toast
+import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.firestore.FirebaseFirestore
 import events.EventFragment
 import java.text.SimpleDateFormat

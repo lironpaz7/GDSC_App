@@ -6,4 +6,4 @@
     android:layout_height="match_parent"
     android:id="@+id/container"
     android:background="#FFFFFF"
-    tools:context=".MainActivity"/>
+    tools:context="com.gdsc_technion.gdsc_app.MainActivity"/>

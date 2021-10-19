@@ -1,4 +1,4 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
+import com.gdsc_technion.gdsc_app.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

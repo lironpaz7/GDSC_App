@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.gdsc_app.EventsData
-import com.example.gdsc_app.R
+import com.gdsc_technion.gdsc_app.EventsData
+import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match

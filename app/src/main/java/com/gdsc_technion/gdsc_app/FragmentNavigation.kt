@@ -1,4 +1,4 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import androidx.fragment.app.Fragment
 

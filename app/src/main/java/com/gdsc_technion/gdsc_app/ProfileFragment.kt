@@ -1,4 +1,4 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import android.app.ProgressDialog
 import android.graphics.BitmapFactory
@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
+import com.gdsc_technion.gdsc_app.R
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth

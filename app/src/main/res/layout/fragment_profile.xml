@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_background_4"
     android:orientation="vertical"
-    tools:context=".ProfileFragment">
+    tools:context="com.gdsc_technion.gdsc_app.ProfileFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

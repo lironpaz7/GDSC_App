@@ -1,9 +1,10 @@
-package com.example.gdsc_app
+package com.gdsc_technion.gdsc_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(), FragmentNavigation {
