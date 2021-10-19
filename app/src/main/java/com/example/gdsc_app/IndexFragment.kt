@@ -93,20 +93,20 @@ class IndexFragment : Fragment() {
             navIndex.navigateFrag(ProfileFragment(), true)
         }
         // info button (fragment)
-        view.findViewById<AppCompatButton>(R.id.infoButton).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.infoButton).setOnClickListener {
             var navIndex = activity as FragmentNavigation
             navIndex.navigateFrag(InfoFragment(), true)
         }
 
         // events button
-        view.findViewById<AppCompatButton>(R.id.eventsButton).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.eventsButton).setOnClickListener {
 //            Toast.makeText(context, "Events will be available soon...", Toast.LENGTH_SHORT).show()
             var navEvents = activity as FragmentNavigation
             navEvents.navigateFrag(CalendarFragment(), true)
         }
 
         // solution challenge button
-        view.findViewById<AppCompatButton>(R.id.solution_challenge_button).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.solution_challenge_button).setOnClickListener {
             Toast.makeText(
                 context,
                 "Solution Challenge will be available soon...",
