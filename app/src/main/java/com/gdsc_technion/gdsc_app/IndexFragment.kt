@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
@@ -58,6 +57,13 @@ class IndexFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_index, container, false)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        // buttons
+
+        val profileButton = view.findViewById<ImageView>(R.id.profileButton)
+        val infoButton = view.findViewById<ImageButton>(R.id.infoButton)
+        val eventsButton = view.findViewById<ImageButton>(R.id.eventsButton)
+        val solutionChallengeButton = view.findViewById<ImageView>(R.id.solution_challenge_button)
+
         // extract user name to display on screen
         fAuth = FirebaseAuth.getInstance()
         var userName = fAuth.currentUser?.email.toString()
@@ -88,26 +94,26 @@ class IndexFragment : Fragment() {
         }
 
         //profile button
-        view.findViewById<ImageView>(R.id.profileButton).setOnClickListener {
-//            Toast.makeText(context, "Contact will be available soon...", Toast.LENGTH_SHORT).show()
-            var navIndex = activity as FragmentNavigation
+        profileButton.setOnClickListener {
+            val navIndex = activity as FragmentNavigation
             navIndex.navigateFrag(ProfileFragment(), true)
         }
         // info button (fragment)
-        view.findViewById<ImageButton>(R.id.infoButton).setOnClickListener {
-            var navIndex = activity as FragmentNavigation
+        infoButton.setOnClickListener {
+            val navIndex = activity as FragmentNavigation
             navIndex.navigateFrag(InfoFragment(), true)
         }
 
         // events button
-        view.findViewById<ImageButton>(R.id.eventsButton).setOnClickListener {
-//            Toast.makeText(context, "Events will be available soon...", Toast.LENGTH_SHORT).show()
-            var navEvents = activity as FragmentNavigation
+        eventsButton.setOnClickListener {
+            val navEvents = activity as FragmentNavigation
             navEvents.navigateFrag(CalendarFragment(), true)
         }
 
         // solution challenge button
-        view.findViewById<ImageButton>(R.id.solution_challenge_button).setOnClickListener {
+        solutionChallengeButton.alpha =
+            ALPHA_OFF //remove when the solution challenge fragment is active
+        solutionChallengeButton.setOnClickListener {
             Toast.makeText(
                 context,
                 "Solution Challenge will be available soon...",

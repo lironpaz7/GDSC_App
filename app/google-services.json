@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:85380946577:android:e2dab8eead377bcc0dfd30",
         "android_client_info": {
-          "package_name": "com.gdsc_technion.gdsc_app"
+          "package_name": "com.example.gdsc_app"
         }
       },
       "oauth_client": [

@@ -83,7 +83,7 @@ class CalendarFragment : Fragment() {
         val day = cal.get(Calendar.DAY_OF_MONTH)
         val month = cal.get(Calendar.MONTH)
         val year = cal.get(Calendar.YEAR)
-        var todayPresentationFormat = "$day/${month + 1}/$year"
+        val todayPresentationFormat = "$day/${month + 1}/$year"
         currentDateTitle.text = todayPresentationFormat
         val dateToday = dateParser.parse(todayPresentationFormat)
 

@@ -13,7 +13,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
-import com.gdsc_technion.gdsc_app.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -101,11 +100,7 @@ class LoginFragment : Fragment() {
         // sign in with google button
         view.findViewById<ImageButton>(R.id.btn_login_google).setOnClickListener {
             val intent = googleSignInClient.signInIntent
-//            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//                onActivityResult(RC_SIGN_IN, result)
-//            }
             activityResultLaunch.launch(intent)
-//            startActivityForResult(intent, RC_SIGN_IN)
         }
         return view
     }
@@ -134,39 +129,31 @@ class LoginFragment : Fragment() {
             btn.alpha = ALPHA_OFF
         }
 
-        fAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val userEmail = fAuth.currentUser?.email.toString()
-                val userName = userEmail.substring(0, userEmail.indexOf("@"))
-                val navIndex = activity as FragmentNavigation
-                Toast.makeText(
-                    context,
-                    "Login Successful as $userName",
-                    Toast.LENGTH_SHORT
-                ).show()
+        fAuth.signInWithCredential(credential).addOnSuccessListener { task ->
+            val userEmail = fAuth.currentUser?.email.toString()
+            val userName = userEmail.substring(0, userEmail.indexOf("@"))
+            val navIndex = activity as FragmentNavigation
+            Toast.makeText(
+                context,
+                "Login Successful as $userName",
+                Toast.LENGTH_SHORT
+            ).show()
 
-                // collects data
-                val userInfo = hashMapOf(
-                    "id" to userName
-                )
+            // collects data
+            val userInfo = hashMapOf(
+                "id" to userName
+            )
 
-                // collects data and store on Firestore -> doc name = user email.
-                val db = FirebaseFirestore.getInstance()
-                val userRef = db.collection("users")
-                userRef.document(userEmail).get().addOnSuccessListener {
-                    if (!it.exists()) {
-                        userRef.document(userEmail).set(userInfo)
-                    }
+            // collects data and store on Firestore -> doc name = user email.
+            val db = FirebaseFirestore.getInstance()
+            val userRef = db.collection("users")
+            userRef.document(userEmail).get().addOnSuccessListener {
+                if (!it.exists()) {
+                    userRef.document(userEmail).set(userInfo)
                 }
-
-                navIndex.navigateFrag(IndexFragment(), true)
-            } else {
-                if (btn != null) {
-                    btn.isEnabled = true
-                    btn.alpha = ALPHA_ON
-                }
-                Toast.makeText(context, task.exception?.message, Toast.LENGTH_SHORT).show()
             }
+
+            navIndex.navigateFrag(IndexFragment(), true)
         }
 
     }
