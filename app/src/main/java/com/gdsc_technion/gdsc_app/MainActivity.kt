@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,7 +28,6 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
 
         supportFragmentManager.beginTransaction().add(R.id.container, LoginFragment()).commit()
 
-
     }
 
     override fun navigateFrag(fragment: Fragment, addToStack: Boolean) {
@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, fragment)
-
         if (addToStack) {
             transaction.addToBackStack(null)
         }

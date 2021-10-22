@@ -97,6 +97,16 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
+                <ImageView
+                    android:id="@+id/calendar_current_addToCalendar_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toRightOf="@id/calendar_current_title"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/addcalendar"
+                    android:visibility="invisible" />
+
             </RelativeLayout>
 
             <RelativeLayout

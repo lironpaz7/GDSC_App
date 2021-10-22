@@ -15,7 +15,8 @@
         android:theme="@style/Theme.GDSC_App">
         <activity
             android:name="com.gdsc_technion.gdsc_app.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

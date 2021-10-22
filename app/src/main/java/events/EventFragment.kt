@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.gdsc_technion.gdsc_app.EventsData
+import com.gdsc_technion.gdsc_app.EventData
 import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -47,7 +47,7 @@ class EventFragment(private var date: String?) : Fragment() {
         val docName = date!!.replace("/", ".")
         val db = FirebaseFirestore.getInstance()
         db.collection("events").document(docName).get().addOnSuccessListener { document ->
-            val doc = document.toObject(EventsData::class.java)
+            val doc = document.toObject(EventData::class.java)
             eventConent.text = doc!!.content
         }
 

@@ -3,13 +3,14 @@ package com.gdsc_technion.gdsc_app
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.CalendarContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
-import com.gdsc_technion.gdsc_app.R
+import com.gdsc_technion.gdsc_app.databinding.FragmentCalenderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import events.EventFragment
@@ -18,17 +19,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-data class EventsData(
+data class EventData(
     var date: String? = null,
     var title: String? = null,
     var content: String? = null,
     var dateFormat: Date? = null,
     var time: String? = null,
+    var timeObj: Date? = null,
+    var location: String? = null,
     var url: String? = null
 )
 
@@ -38,62 +37,51 @@ data class EventsData(
  * create an instance of this fragment.
  */
 class CalendarFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentCalenderBinding
     private var currentDateSelected: String? = null
     private lateinit var cal: Calendar
     private lateinit var currentDateContent: TextView
     private lateinit var calenderUpcomingEvents: TextView
+    private lateinit var addToCalendarBtn: ImageView
     private var allEventsDateTable: HashMap<String, String> = HashMap()
-    private var allEventsTable: HashMap<String, EventsData> = HashMap()
+    private var allEventTable: HashMap<String, EventData> = HashMap()
     lateinit var fAuth: FirebaseAuth
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_calender, container, false)
+    ): View = FragmentCalenderBinding.inflate(
+        inflater, container, false
+    ).also { binding = it }.root
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // initialize buttons, textviews and events list
         val dateParser = SimpleDateFormat("dd/MM/yyyy")
         cal = Calendar.getInstance()
-        val calender = view.findViewById<CalendarView>(R.id.calendar)
-        val backBtn = view.findViewById<Button>(R.id.calendar_back_btn)
-        val todayBtn = view.findViewById<Button>(R.id.calendar_today_btn)
-        val selectBtn = view.findViewById<Button>(R.id.calendar_select_btn)
-        val addEventButton = view.findViewById<ImageView>(R.id.calendar_addEvent_btn)
+        val calender = binding.calendar
+        val backBtn = binding.calendarBackBtn
+        val todayBtn = binding.calendarTodayBtn
+        val selectBtn = binding.calendarSelectBtn
+        val adminButton = binding.calendarAddEventBtn
+        addToCalendarBtn = binding.calendarCurrentAddToCalendarBtn
 
         fAuth = FirebaseAuth.getInstance()
-        var userName = fAuth.currentUser?.email.toString()
+        val userName = fAuth.currentUser?.email.toString()
         val db = FirebaseFirestore.getInstance()
         db.collection("users").document(userName).get().addOnSuccessListener {
             val data = it.toObject(User::class.java)
-            if (data!!.admin != null && data.admin == "yes") {
-                addEventButton.isVisible = true
-                addEventButton.isEnabled = true
+            if (data?.admin != null && data.admin == "yes") {
+                adminButton.isVisible = true
+                adminButton.isEnabled = true
             }
         }
 
-        // addEvent button
-
-        addEventButton.setOnClickListener {
-            val navAddEvent = activity as FragmentNavigation
-            navAddEvent.navigateFrag(AddEventFragment(), true)
+        // adminButton button
+        adminButton.setOnClickListener {
+            EventAdminFragment().show(requireActivity().supportFragmentManager, null)
         }
 
-
-        val upcomingEventsTable = ArrayList<EventsData>()
+        val upcomingEventsTable = ArrayList<EventData>()
 
         val currentDateTitle = view.findViewById<TextView>(R.id.calendar_current_title)
         currentDateContent = view.findViewById(R.id.calendar_current_content)
@@ -111,12 +99,16 @@ class CalendarFragment : Fragment() {
         //extract events from firebase
         db.collection("events").get().addOnSuccessListener { documents ->
             for (doc in documents) {
-                val data = doc.toObject(EventsData::class.java)
+                val data = doc.toObject(EventData::class.java)
                 val docNameSplit = doc.id.split(" ")
                 val dateFormat = docNameSplit[0].replace(".", "/")
+
+                val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm")
+                data.timeObj = sdf.parse(doc.id.toString())
+
                 val currentDate = dateParser.parse(dateFormat)
                 allEventsDateTable[dateFormat] = data.title.toString()
-                allEventsTable[dateFormat] = data
+                allEventTable[dateFormat] = data
                 data.date = dateFormat
                 data.dateFormat = currentDate
                 if (currentDate.after(dateToday)) {
@@ -160,6 +152,20 @@ class CalendarFragment : Fragment() {
             checkAndUpdateEvent(todayPresentationFormat)
         }
 
+        // add to calendar button
+        addToCalendarBtn.setOnClickListener {
+            val obj = allEventTable[currentDateSelected]
+            val eventStart = obj?.timeObj?.time
+            val insertCalendarIntent =
+                Intent(Intent.ACTION_INSERT).setData(CalendarContract.Events.CONTENT_URI)
+                    .putExtra(CalendarContract.Events.TITLE, obj?.title)
+                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, eventStart)
+                    .putExtra(CalendarContract.Events.EVENT_LOCATION, obj?.location)
+
+            startActivity(insertCalendarIntent)
+
+        }
+
         // back button
         backBtn.setOnClickListener {
             val navCalender = activity as FragmentNavigation
@@ -170,11 +176,9 @@ class CalendarFragment : Fragment() {
         selectBtn.setOnClickListener {
             if (currentDateSelected != null) {
                 if (currentDateSelected in allEventsDateTable) {
-                    if (allEventsTable[currentDateSelected]?.url != null) {
-                        val url = allEventsTable[currentDateSelected]?.url
-                        val i = Intent(Intent.ACTION_VIEW)
-                        i.data = Uri.parse(url)
-                        startActivity(i)
+                    if (allEventTable[currentDateSelected]?.url != null) {
+                        val url = allEventTable[currentDateSelected]?.url
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                     } else {
                         val navEvent = activity as FragmentNavigation
                         navEvent.navigateFrag(EventFragment(currentDateSelected), true)
@@ -188,35 +192,15 @@ class CalendarFragment : Fragment() {
                     .show()
             }
         }
-
-        return view
     }
 
     private fun checkAndUpdateEvent(date: String) {
         if (date in allEventsDateTable) {
             currentDateContent.text = allEventsDateTable[date]
+            addToCalendarBtn.visibility = View.VISIBLE
         } else {
             currentDateContent.text = "No events"
+            addToCalendarBtn.visibility = View.INVISIBLE
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CalenderFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CalendarFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
