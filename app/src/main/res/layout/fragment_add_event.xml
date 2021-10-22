@@ -38,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:hint="Add title"
             app:boxBackgroundColor="#F8E9FD">
 
 
@@ -46,7 +45,7 @@
                 android:id="@+id/add_event_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1" />
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -61,7 +60,6 @@
             android:id="@+id/add_event_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="Date:"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -71,7 +69,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/add_event_date"
             android:scaleType="fitXY"
             android:src="@drawable/calendar" />
 
@@ -81,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:layout_toRightOf="@id/add_event_date_btn"
             android:text=""
             android:textSize="18sp" />
     </LinearLayout>
@@ -96,17 +92,15 @@
             android:id="@+id/add_event_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="Time:"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/add_event_time_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/add_event_time"
             android:scaleType="fitXY"
             android:src="@drawable/clock" />
 
@@ -114,9 +108,7 @@
             android:id="@+id/add_event_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:layout_toRightOf="@id/add_event_time_btn"
             android:text=""
             android:textSize="18sp" />
     </LinearLayout>
@@ -125,7 +117,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/add_event_location"
@@ -141,13 +134,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/add_event_location"
-            android:hint="Add link to event"
             app:boxBackgroundColor="#F8E9FD">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_event_location_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -155,13 +149,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/add_event_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="Link:"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -170,22 +164,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/add_event_link"
-            android:hint="Add link to event"
             app:boxBackgroundColor="#F8E9FD">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_event_link_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
