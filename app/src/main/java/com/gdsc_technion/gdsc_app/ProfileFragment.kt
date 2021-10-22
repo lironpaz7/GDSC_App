@@ -45,7 +45,8 @@ data class User(
     var imagePath: String? = null,
     var degree: String? = null,
     var degreeYear: String? = null,
-    var shareMyInfo: String? = null
+    var shareMyInfo: String? = null,
+    var admin: String? = null
 
 )
 

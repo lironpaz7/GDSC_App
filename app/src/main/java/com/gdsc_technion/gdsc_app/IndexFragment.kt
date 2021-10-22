@@ -74,10 +74,10 @@ class IndexFragment : Fragment() {
 
         // change profile picture
         val profilePicture = view.findViewById<ImageView>(R.id.profileButton)
-        val docId = fAuth.currentUser?.email.toString()
-        val userNameFromMail = docId.substring(0, docId.indexOf("@"))
+        userName = fAuth.currentUser?.email.toString()
+        val userNameFromMail = userName.substring(0, userName.indexOf("@"))
         val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(docId).get().addOnSuccessListener { docSnap ->
+        db.collection("users").document(userName).get().addOnSuccessListener { docSnap ->
             //get data class object for easy data assignment
             val doc = docSnap.toObject(User::class.java)!!
             if (doc.imagePath != null && doc.imagePath != "null") {

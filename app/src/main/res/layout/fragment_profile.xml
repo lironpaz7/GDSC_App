@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background_4"
+    android:background="@drawable/login_background_2"
     android:orientation="vertical"
     tools:context="com.gdsc_technion.gdsc_app.ProfileFragment">
 

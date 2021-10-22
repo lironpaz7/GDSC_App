@@ -14,7 +14,8 @@
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_events.xml" value="0.1" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_scrolling.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_active_users.xml" value="0.22" />
-        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_calender.xml" value="0.22" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_add_event.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_calender.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_degrees.xml" value="0.22" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_event.xml" value="0.22" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_event8102021.xml" value="0.3333333333333333" />
@@ -24,7 +25,7 @@
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_gallery.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_home.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_index.xml" value="0.22" />
-        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_login.xml" value="0.3069216757741348" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_mail.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_mail2.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_profile.xml" value="0.22" />

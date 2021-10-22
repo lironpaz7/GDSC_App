@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.isVisible
 import com.gdsc_technion.gdsc_app.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import events.EventFragment
 import java.text.SimpleDateFormat
@@ -29,6 +28,7 @@ data class EventsData(
     var title: String? = null,
     var content: String? = null,
     var dateFormat: Date? = null,
+    var time: String? = null,
     var url: String? = null
 )
 
@@ -47,6 +47,7 @@ class CalendarFragment : Fragment() {
     private lateinit var calenderUpcomingEvents: TextView
     private var allEventsDateTable: HashMap<String, String> = HashMap()
     private var allEventsTable: HashMap<String, EventsData> = HashMap()
+    lateinit var fAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +72,26 @@ class CalendarFragment : Fragment() {
         val backBtn = view.findViewById<Button>(R.id.calendar_back_btn)
         val todayBtn = view.findViewById<Button>(R.id.calendar_today_btn)
         val selectBtn = view.findViewById<Button>(R.id.calendar_select_btn)
+        val addEventButton = view.findViewById<ImageView>(R.id.calendar_addEvent_btn)
+
+        fAuth = FirebaseAuth.getInstance()
+        var userName = fAuth.currentUser?.email.toString()
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users").document(userName).get().addOnSuccessListener {
+            val data = it.toObject(User::class.java)
+            if (data!!.admin != null && data.admin == "yes") {
+                addEventButton.isVisible = true
+                addEventButton.isEnabled = true
+            }
+        }
+
+        // addEvent button
+
+        addEventButton.setOnClickListener {
+            val navAddEvent = activity as FragmentNavigation
+            navAddEvent.navigateFrag(AddEventFragment(), true)
+        }
+
 
         val upcomingEventsTable = ArrayList<EventsData>()
 
@@ -88,12 +109,11 @@ class CalendarFragment : Fragment() {
         val dateToday = dateParser.parse(todayPresentationFormat)
 
         //extract events from firebase
-        val db = FirebaseFirestore.getInstance()
         db.collection("events").get().addOnSuccessListener { documents ->
             for (doc in documents) {
                 val data = doc.toObject(EventsData::class.java)
-//                Log.d("@@@@@@@@", data.content.toString())
-                val dateFormat = doc.id.replace(".", "/")
+                val docNameSplit = doc.id.split(" ")
+                val dateFormat = docNameSplit[0].replace(".", "/")
                 val currentDate = dateParser.parse(dateFormat)
                 allEventsDateTable[dateFormat] = data.title.toString()
                 allEventsTable[dateFormat] = data
@@ -117,7 +137,7 @@ class CalendarFragment : Fragment() {
                 //update upcoming events
                 val textTmp = StringBuilder()
                 for (event in upcomingEventsTable) {
-                    textTmp.append("${event.date}: ${event.title}\n")
+                    textTmp.append("${event.date} ${event.time}: ${event.title}\n")
                 }
                 calenderUpcomingEvents.text = textTmp.toString()
             }
