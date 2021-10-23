@@ -4,12 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.gdsc_technion.gdsc_app.databinding.FragmentCalenderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -62,7 +62,7 @@ class CalendarFragment : Fragment() {
         val backBtn = binding.calendarBackBtn
         val todayBtn = binding.calendarTodayBtn
         val selectBtn = binding.calendarSelectBtn
-        val adminButton = binding.calendarAddEventBtn
+        val adminButton = binding.calendarEventAdminBtn
         addToCalendarBtn = binding.calendarCurrentAddToCalendarBtn
 
         fAuth = FirebaseAuth.getInstance()

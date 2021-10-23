@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -59,7 +58,7 @@ class IndexFragment : Fragment() {
 
         // buttons
 
-        val profileButton = view.findViewById<ImageView>(R.id.profileButton)
+        val profileButton = view.findViewById<ImageView>(R.id.index_profileButton)
         val infoButton = view.findViewById<ImageButton>(R.id.infoButton)
         val eventsButton = view.findViewById<ImageButton>(R.id.eventsButton)
         val solutionChallengeButton = view.findViewById<ImageView>(R.id.solution_challenge_button)
@@ -70,10 +69,10 @@ class IndexFragment : Fragment() {
         val storageReference = FirebaseStorage.getInstance().reference
         userName = userName.substring(0, userName.indexOf("@"))
         displayUser = "Welcome $userName"
-        view.findViewById<TextView>(R.id.userNameTitle).setText(displayUser)
+        view.findViewById<TextView>(R.id.index_username_welcome).setText(displayUser)
 
         // change profile picture
-        val profilePicture = view.findViewById<ImageView>(R.id.profileButton)
+        val profilePicture = view.findViewById<ImageView>(R.id.index_profileButton)
         userName = fAuth.currentUser?.email.toString()
         val userNameFromMail = userName.substring(0, userName.indexOf("@"))
         val db = FirebaseFirestore.getInstance()

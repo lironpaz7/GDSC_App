@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
-import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,16 +44,16 @@ class ForgotFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_forgot, container, false)
 
-        username = view.findViewById(R.id.log_username_forgot)
+        username = view.findViewById(R.id.forgot_username_text)
         fAuth = FirebaseAuth.getInstance()
 
         // reset password
-        view.findViewById<Button>(R.id.btn_reset_forgot).setOnClickListener {
+        view.findViewById<Button>(R.id.forgot_reset_btn).setOnClickListener {
             validateForm()
         }
 
         // back button
-        view.findViewById<Button>(R.id.btn_back_forgot).setOnClickListener {
+        view.findViewById<Button>(R.id.forgot_back_btn).setOnClickListener {
             val navLogin = activity as FragmentNavigation
             navLogin.navigateFrag(LoginFragment(), false)
         }

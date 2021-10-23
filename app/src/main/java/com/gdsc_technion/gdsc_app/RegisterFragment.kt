@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
-import com.gdsc_technion.gdsc_app.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -55,16 +54,16 @@ class RegisterFragment : Fragment() {
         confirmPassword = view.findViewById(R.id.reg_confirm_password)
         fAuth = FirebaseAuth.getInstance()
 
-        view.findViewById<Button>(R.id.btn_login_reg).setOnClickListener {
+        view.findViewById<Button>(R.id.register_back_btn).setOnClickListener {
             val navRegister = activity as FragmentNavigation
             navRegister.navigateFrag(LoginFragment(), false)
         }
 
-        view.findViewById<Button>(R.id.btn_register_reg).setOnClickListener {
+        view.findViewById<Button>(R.id.register_reg_btn).setOnClickListener {
             validateEmptyForm()
         }
 
-        view.findViewById<Button>(R.id.btn_clear_reg).setOnClickListener {
+        view.findViewById<Button>(R.id.register_clear_btn).setOnClickListener {
             username.setText("")
             password.setText("")
             confirmPassword.setText("")
@@ -73,7 +72,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun fireBaseSignUp() {
-        val btn = view?.findViewById<Button>(R.id.btn_register_reg)
+        val btn = view?.findViewById<Button>(R.id.register_reg_btn)
         if (btn != null) {
             btn.isEnabled = false
             btn.alpha = ALPHA_OFF

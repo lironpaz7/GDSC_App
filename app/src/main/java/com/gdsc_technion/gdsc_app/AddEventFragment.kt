@@ -2,14 +2,12 @@ package com.gdsc_technion.gdsc_app
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -35,7 +33,6 @@ class AddEventFragment : DialogFragment() {
 
     private lateinit var eventsRef: CollectionReference
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +70,6 @@ class AddEventFragment : DialogFragment() {
             locationText.setText("")
             dateText.text = ""
             timeText.text = ""
-
         }
 
         // submit button
@@ -83,7 +79,7 @@ class AddEventFragment : DialogFragment() {
 
         // datePicker button
         datePicker.setOnClickListener {
-            val dpd = DatePickerDialog(
+            DatePickerDialog(
                 requireActivity(),
                 { _, mYear, mMonth, mDay ->
                     dateText.setText("$mDay/${mMonth + 1}/$mYear")
@@ -91,13 +87,12 @@ class AddEventFragment : DialogFragment() {
                 year,
                 month,
                 day
-            )
-            dpd.show()
+            ).show()
         }
 
         // time picker
         timePicker.setOnClickListener {
-            val tpd = TimePickerDialog(
+            TimePickerDialog(
                 requireActivity(),
                 { _, h, m ->
                     var fixedMinute = m.toString()
