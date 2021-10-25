@@ -120,7 +120,7 @@ class LoginFragment : Fragment() {
             btn.alpha = ALPHA_OFF
         }
 
-        fAuth.signInWithCredential(credential).addOnSuccessListener { task ->
+        fAuth.signInWithCredential(credential).addOnSuccessListener {
             val userEmail = fAuth.currentUser?.email.toString()
             val userName = userEmail.substring(0, userEmail.indexOf("@"))
             Toast.makeText(
@@ -144,7 +144,7 @@ class LoginFragment : Fragment() {
             }
 
             findNavController().navigate(R.id.action_loginFragment_to_indexFragment)
-        }
+        }.addOnCanceledListener {}
 
     }
 

@@ -64,39 +64,35 @@ class IndexFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         db.collection("users").document(userName).get().addOnSuccessListener { docSnap ->
             //get data class object for easy data assignment
-            val doc = docSnap.toObject(User::class.java)!!
-            if (doc.imagePath != null && doc.imagePath != "null") {
-                val sRef = storageReference.child(doc.imagePath.toString())
-                val localFile = File.createTempFile("tempImage", "jpg")
-                sRef.getFile(localFile).addOnSuccessListener {
-                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                    profilePicture.setImageBitmap(bitmap)
-                }.addOnFailureListener {
+            val doc = docSnap.toObject(User::class.java)
+            if (doc != null) {
+                if (doc.imagePath != null && doc.imagePath != "null") {
+                    val sRef = storageReference.child(doc.imagePath.toString())
+                    val localFile = File.createTempFile("tempImage", "jpg")
+                    sRef.getFile(localFile).addOnSuccessListener {
+                        val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                        profilePicture.setImageBitmap(bitmap)
+                    }.addOnFailureListener {
+                    }
+                } else {
+                    profilePicture.setImageResource(R.drawable.profile)
                 }
-            } else {
-                profilePicture.setImageResource(R.drawable.profile)
             }
         }
 
         //profile button
         profileButton.setOnClickListener {
-//            val navIndex = activity as FragmentNavigation
-//            navIndex.navigateFrag(ProfileFragment(), true)
             findNavController()
                 .navigate(R.id.action_indexFragment_to_profileFragment)
         }
         // info button (fragment)
         infoButton.setOnClickListener {
-//            val navIndex = activity as FragmentNavigation
-//            navIndex.navigateFrag(InfoFragment(), true)
             findNavController()
                 .navigate(R.id.action_indexFragment_to_infoFragment)
         }
 
         // events button
         eventsButton.setOnClickListener {
-//            val navEvents = activity as FragmentNavigation
-//            navEvents.navigateFrag(CalendarFragment(), true)
             findNavController()
                 .navigate(R.id.action_indexFragment_to_calendarFragment)
         }
@@ -115,9 +111,7 @@ class IndexFragment : Fragment() {
         // logout button
         view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-//            var navLogin = activity as FragmentNavigation
             Toast.makeText(context, "Log out successful", Toast.LENGTH_SHORT).show()
-//            navLogin.navigateFrag(LoginFragment(), false)
             Navigation.findNavController(view).navigate(R.id.action_indexFragment_to_loginFragment)
         }
     }
