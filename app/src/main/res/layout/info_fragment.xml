@@ -70,6 +70,7 @@
         android:id="@+id/info_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
