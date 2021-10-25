@@ -5,15 +5,14 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
-import com.gdsc_technion.gdsc_app.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -26,10 +25,6 @@ import java.io.File
 import java.util.*
 import kotlin.collections.HashMap
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -68,10 +63,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
 
         fireBaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
@@ -93,7 +84,10 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fAuth = FirebaseAuth.getInstance()
 
         profilePictureRef = view.findViewById(R.id.profile_picture)
@@ -482,11 +476,10 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         // back button
         view.findViewById<Button>(R.id.profileBackButton).setOnClickListener {
-            val navIndex = activity as FragmentNavigation
-            navIndex.navigateFrag(IndexFragment(), false)
+//            val navIndex = activity as FragmentNavigation
+//            navIndex.navigateFrag(IndexFragment(), false)
+            findNavController().navigate(R.id.action_profileFragment_to_indexFragment)
         }
-
-        return view
     }
 
     private fun setDefaultProfilePicture() {
@@ -532,31 +525,5 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
         docRef.update("imagePath", doc.imagePath)
 //        Log.d("Generated image link", "${doc.imagePath}")
 
-    }
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-
-        private const val CHOOSING_IMAGE_REQUEST: Int = 120
-        private const val DEFAULT_IMAGE_PATH = "@drawable/profile"
-
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

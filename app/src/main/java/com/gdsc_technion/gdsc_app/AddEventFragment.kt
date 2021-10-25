@@ -38,7 +38,10 @@ class AddEventFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_event, container, false)
+        return inflater.inflate(R.layout.fragment_add_event, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val db = FirebaseFirestore.getInstance()
         eventsRef = db.collection("events")
 
@@ -103,8 +106,6 @@ class AddEventFragment : DialogFragment() {
                 }, hour, minute, true
             ).show()
         }
-
-        return view
     }
 
     private fun validateForm() {

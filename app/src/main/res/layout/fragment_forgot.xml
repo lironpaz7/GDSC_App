@@ -20,6 +20,7 @@
             android:id="@+id/forgot_lock_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:paddingVertical="8dp"
             android:src="@drawable/lock_icon"
             app:layout_constraintBottom_toTopOf="@id/forgot_gdsc_text"
             app:layout_constraintLeft_toLeftOf="parent"

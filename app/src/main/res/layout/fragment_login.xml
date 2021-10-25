@@ -56,20 +56,22 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_logo" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="8dp"
-        android:paddingVertical="8dp">
+        android:paddingVertical="4dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_username_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username"
-            android:paddingVertical="8dp"
+            android:paddingVertical="4dp"
             app:boxBackgroundColor="#F8E9FD"
             app:layout_constraintBottom_toTopOf="@id/login_password_box"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -89,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:paddingVertical="8dp"
+            android:paddingVertical="4dp"
             app:boxBackgroundColor="#F8E9FD"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -168,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:paddingVertical="4dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_btn"
@@ -190,7 +192,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:paddingVertical="4dp">
 
 
         <ImageView

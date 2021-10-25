@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="com.gdsc_technion.gdsc_app.ForgotFragment"
+        android:label="Reset Password" >
+        <action
+            android:id="@+id/action_forgotFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/indexFragment"
+        android:name="com.gdsc_technion.gdsc_app.IndexFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_index">
+        <action
+            android:id="@+id/action_indexFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_indexFragment_to_infoFragment"
+            app:destination="@id/infoFragment" />
+        <action
+            android:id="@+id/action_indexFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_indexFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.gdsc_technion.gdsc_app.CalendarFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_calender">
+        <action
+            android:id="@+id/action_calendarFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_to_eventAdminFragment"
+            app:destination="@id/eventAdminFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_self"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.gdsc_technion.gdsc_app.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.gdsc_technion.gdsc_app.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotFragment"
+            app:destination="@id/forgotFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.gdsc_technion.gdsc_app.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.gdsc_technion.gdsc_app.InfoFragment"
+        android:label="Information"
+        tools:layout="@layout/info_fragment">
+        <action
+            android:id="@+id/action_infoFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_activeUsersFragment"
+            app:destination="@id/activeUsersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activeUsersFragment"
+        android:name="com.gdsc_technion.gdsc_app.ActiveUsersFragment"
+        android:label="Active Users"
+        tools:layout="@layout/fragment_active_users" >
+        <action
+            android:id="@+id/action_activeUsersFragment_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventAdminFragment"
+        android:name="com.gdsc_technion.gdsc_app.EventAdminFragment"
+        android:label="fragment_event_admin"
+        tools:layout="@layout/fragment_event_admin" >
+        <action
+            android:id="@+id/action_eventAdminFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_indexFragment"
+        app:destination="@id/indexFragment" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment" />
+</navigation>

@@ -13,6 +13,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -62,8 +65,10 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<TextView>(R.id.versionNumber).text = BuildConfig.VERSION_NAME
 
         username = view.findViewById(R.id.log_username)
@@ -71,14 +76,12 @@ class LoginFragment : Fragment() {
         fAuth = FirebaseAuth.getInstance()
 
         view.findViewById<TextView>(R.id.login_btn_register).setOnClickListener {
-            val navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(RegisterFragment(), true)
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment2)
         }
 
         // forgot password
         view.findViewById<TextView>(R.id.login_forgotPassword).setOnClickListener {
-            val navForgot = activity as FragmentNavigation
-            navForgot.navigateFrag(ForgotFragment(), true)
+            findNavController().navigate(R.id.action_loginFragment_to_forgotFragment)
         }
 
         // login button
@@ -91,7 +94,6 @@ class LoginFragment : Fragment() {
             val intent = googleSignInClient.signInIntent
             activityResultLaunch.launch(intent)
         }
-        return view
     }
 
     private fun onActivityResult(requestCode: Int, result: ActivityResult) {
@@ -121,7 +123,6 @@ class LoginFragment : Fragment() {
         fAuth.signInWithCredential(credential).addOnSuccessListener { task ->
             val userEmail = fAuth.currentUser?.email.toString()
             val userName = userEmail.substring(0, userEmail.indexOf("@"))
-            val navIndex = activity as FragmentNavigation
             Toast.makeText(
                 context,
                 "Login Successful as $userName",
@@ -142,7 +143,7 @@ class LoginFragment : Fragment() {
                 }
             }
 
-            navIndex.navigateFrag(IndexFragment(), true)
+            findNavController().navigate(R.id.action_loginFragment_to_indexFragment)
         }
 
     }
@@ -203,13 +204,12 @@ class LoginFragment : Fragment() {
                     } else {
                         var userName = fAuth.currentUser?.email.toString()
                         userName = userName.substring(0, userName.indexOf("@"))
-                        val navIndex = activity as FragmentNavigation
                         Toast.makeText(
                             context,
                             "Login Successful as $userName",
                             Toast.LENGTH_SHORT
                         ).show()
-                        navIndex.navigateFrag(IndexFragment(), true)
+                        findNavController().navigate(R.id.action_loginFragment_to_indexFragment)
                     }
                 } else {
                     if (btn != null) {

@@ -8,15 +8,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -28,23 +26,10 @@ class IndexFragment : Fragment() {
     private lateinit var displayUser: String
     lateinit var fAuth: FirebaseAuth
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    private val appID = "APP_ID"
-    private val region = "REGION"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(
-                ARG_PARAM2
-            )
-        }
     }
 
     override fun onCreateView(
@@ -52,10 +37,11 @@ class IndexFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_index, container, false)
+    }
 
-        var view = inflater.inflate(R.layout.fragment_index, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         // buttons
 
         val profileButton = view.findViewById<ImageView>(R.id.index_profileButton)
@@ -94,19 +80,25 @@ class IndexFragment : Fragment() {
 
         //profile button
         profileButton.setOnClickListener {
-            val navIndex = activity as FragmentNavigation
-            navIndex.navigateFrag(ProfileFragment(), true)
+//            val navIndex = activity as FragmentNavigation
+//            navIndex.navigateFrag(ProfileFragment(), true)
+            findNavController()
+                .navigate(R.id.action_indexFragment_to_profileFragment)
         }
         // info button (fragment)
         infoButton.setOnClickListener {
-            val navIndex = activity as FragmentNavigation
-            navIndex.navigateFrag(InfoFragment(), true)
+//            val navIndex = activity as FragmentNavigation
+//            navIndex.navigateFrag(InfoFragment(), true)
+            findNavController()
+                .navigate(R.id.action_indexFragment_to_infoFragment)
         }
 
         // events button
         eventsButton.setOnClickListener {
-            val navEvents = activity as FragmentNavigation
-            navEvents.navigateFrag(CalendarFragment(), true)
+//            val navEvents = activity as FragmentNavigation
+//            navEvents.navigateFrag(CalendarFragment(), true)
+            findNavController()
+                .navigate(R.id.action_indexFragment_to_calendarFragment)
         }
 
         // solution challenge button
@@ -123,30 +115,10 @@ class IndexFragment : Fragment() {
         // logout button
         view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            var navLogin = activity as FragmentNavigation
+//            var navLogin = activity as FragmentNavigation
             Toast.makeText(context, "Log out successful", Toast.LENGTH_SHORT).show()
-            navLogin.navigateFrag(LoginFragment(), false)
+//            navLogin.navigateFrag(LoginFragment(), false)
+            Navigation.findNavController(view).navigate(R.id.action_indexFragment_to_loginFragment)
         }
-        return view
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IndexFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            IndexFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

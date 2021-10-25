@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,29 +8,37 @@
     android:orientation="vertical"
     tools:context="com.gdsc_technion.gdsc_app.ProfileFragment">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp">
 
         <TextView
+            android:id="@+id/profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="sans-serif-light"
             android:text="User Profile"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/profileBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="5dp"
             android:text="Back"
-            android:textAlignment="center" />
-    </RelativeLayout>
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,10 +83,10 @@
             </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_username_title"
@@ -85,7 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Name: "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/profile_username"
@@ -96,15 +108,19 @@
                 android:layout_toEndOf="@id/profile_username_title"
                 android:enabled="false"
                 android:lines="1"
+                android:paddingHorizontal="8dp"
                 android:text=""
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_username_title"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_age_title"
@@ -112,7 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Age: "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/profile_age"
@@ -124,16 +143,20 @@
                 android:enabled="false"
                 android:inputType="numberDecimal"
                 android:lines="1"
+                android:paddingHorizontal="8dp"
                 android:text=""
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_age_title"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_degree_title"
@@ -141,7 +164,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Degree: "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/profile_arrow_btn"
@@ -150,7 +176,10 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/profile_degree_title"
                 android:scaleType="fitXY"
-                android:src="@drawable/list_pick" />
+                android:src="@drawable/list_pick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_degree"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/profile_degree"
@@ -159,35 +188,29 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/profile_arrow_btn"
                 android:enabled="false"
+                android:paddingHorizontal="8dp"
                 android:text=""
-                android:textColor="@color/black" />
-            <!--            <EditText-->
-            <!--                android:id="@+id/profile_degree"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="10dp"-->
-            <!--                android:layout_toEndOf="@id/profile_degree_title"-->
-            <!--                android:enabled="false"-->
-            <!--                android:inputType="text"-->
-            <!--                android:lines="1"-->
-            <!--                android:text=""-->
-            <!--                android:textColor="@color/black" />-->
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_degree_title"
+                app:layout_constraintTop_toTopOf="parent" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_degreeYear_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:text="Year: "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/profile_degreeYear"
@@ -197,15 +220,19 @@
                 android:layout_toEndOf="@id/profile_degreeYear_title"
                 android:enabled="false"
                 android:inputType="numberDecimal"
-                android:lines="1"
+                android:paddingHorizontal="8dp"
+                android:singleLine="true"
                 android:text=""
-                android:textColor="@color/black" />
-        </RelativeLayout>
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_degreeYear_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_interests_title"
@@ -229,10 +256,10 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp">
+            android:paddingVertical="4dp">
 
             <TextView
                 android:id="@+id/profile_shareMyProfile_title"
@@ -240,21 +267,27 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Share my profile information: "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/profile_shareInfoButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/profile_shareMyProfile_title"
-                android:clickable="false" />
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_shareMyProfile_title"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:paddingVertical="4dp">
 
             <ImageButton
                 android:id="@+id/profile_edit_btn"
@@ -262,31 +295,40 @@
                 android:layout_height="40dp"
                 android:background="#00FFFFFF"
                 android:scaleType="centerCrop"
-                android:src="@drawable/edit_button" />
+                android:src="@drawable/edit_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/profile_save_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/profile_edit_btn"
                 android:background="#00FFFFFF"
+                android:layout_marginHorizontal="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/confirm_btn"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_edit_btn"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/profile_abort_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/profile_save_btn"
                 android:background="#00FFFFFF"
+                android:layout_marginHorizontal="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/abort"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_save_btn"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

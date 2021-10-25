@@ -10,10 +10,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.gdsc_technion.gdsc_app.databinding.FragmentCalenderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import events.EventFragment
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -102,7 +102,6 @@ class CalendarFragment : Fragment() {
                 val data = doc.toObject(EventData::class.java)
                 val docNameSplit = doc.id.split(" ")
                 val dateFormat = docNameSplit[0].replace(".", "/")
-
                 val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm")
                 data.timeObj = sdf.parse(doc.id.toString())
 
@@ -161,15 +160,12 @@ class CalendarFragment : Fragment() {
                     .putExtra(CalendarContract.Events.TITLE, obj?.title)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, eventStart)
                     .putExtra(CalendarContract.Events.EVENT_LOCATION, obj?.location)
-
             startActivity(insertCalendarIntent)
-
         }
 
         // back button
         backBtn.setOnClickListener {
-            val navCalender = activity as FragmentNavigation
-            navCalender.navigateFrag(IndexFragment(), false)
+            findNavController().navigate(R.id.action_global_indexFragment)
         }
 
         // select button
@@ -180,8 +176,7 @@ class CalendarFragment : Fragment() {
                         val url = allEventTable[currentDateSelected]?.url
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                     } else {
-                        val navEvent = activity as FragmentNavigation
-                        navEvent.navigateFrag(EventFragment(currentDateSelected), true)
+                        findNavController().navigate(R.id.action_calendarFragment_self)
                     }
                 } else {
                     Toast.makeText(context, "No events found on this date", Toast.LENGTH_SHORT)

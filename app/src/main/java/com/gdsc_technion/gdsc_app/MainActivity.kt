@@ -1,14 +1,13 @@
 package com.gdsc_technion.gdsc_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.gdsc_technion.gdsc_app.R
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity(), FragmentNavigation {
+class MainActivity : AppCompatActivity() {
     private lateinit var fAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +25,13 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
 //            supportFragmentManager.beginTransaction().add(R.id.container, LoginFragment()).commit()
 //        }
 
-        supportFragmentManager.beginTransaction().add(R.id.container, LoginFragment()).commit()
+//        supportFragmentManager.beginTransaction().add(R.id.container, LoginFragment()).commit()
+        setupActionBarWithNavController(findNavController(R.id.mainFragment))
 
     }
 
-    override fun navigateFrag(fragment: Fragment, addToStack: Boolean) {
-        val transaction =
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, fragment)
-        if (addToStack) {
-            transaction.addToBackStack(null)
-        }
-        transaction.commit()
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.mainFragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

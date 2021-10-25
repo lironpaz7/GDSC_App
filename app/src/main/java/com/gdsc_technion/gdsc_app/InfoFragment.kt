@@ -2,36 +2,31 @@ package com.gdsc_technion.gdsc_app
 
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatDelegate
-import com.gdsc_technion.gdsc_app.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class InfoFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = InfoFragment()
-    }
-
-    private lateinit var viewModel: InfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.info_fragment, container, false)
+        return inflater.inflate(R.layout.info_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         // back button
         view.findViewById<Button>(R.id.infoBackButton).setOnClickListener {
-            val navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(IndexFragment(), false)
+            findNavController().navigate(R.id.action_global_indexFragment)
         }
 
         // website button
@@ -60,8 +55,7 @@ class InfoFragment : Fragment() {
 
         // users button
         view.findViewById<ImageButton>(R.id.activeUsersBtn).setOnClickListener {
-            val activeUsersBtn = activity as FragmentNavigation
-            activeUsersBtn.navigateFrag(ActiveUsersFragment(), true)
+            findNavController().navigate(R.id.action_infoFragment_to_activeUsersFragment)
         }
 
         // telegram button
@@ -89,14 +83,6 @@ class InfoFragment : Fragment() {
             i.data = Uri.parse(url)
             startActivity(i)
         }
-
-        return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(InfoViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
