@@ -36,9 +36,10 @@ class EventAdminFragment : DialogFragment() {
             DeleteEventFragment().show(requireActivity().supportFragmentManager, null)
             dismiss()
         }
-
+        binding.adminEditBtn.alpha = ALPHA_OFF
         binding.adminEditBtn.setOnClickListener {
             Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 
