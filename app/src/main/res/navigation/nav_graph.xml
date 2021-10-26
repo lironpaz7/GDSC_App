@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/forgotFragment"
         android:name="com.gdsc_technion.gdsc_app.ForgotFragment"
-        android:label="Reset Password" >
+        android:label="Reset Password">
         <action
             android:id="@+id/action_forgotFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_indexFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_indexFragment_to_solutionChallengeFragment"
+            app:destination="@id/solutionChallengeFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -50,7 +53,7 @@
         android:id="@+id/registerFragment2"
         android:name="com.gdsc_technion.gdsc_app.RegisterFragment"
         android:label="Register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment2_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -95,7 +98,7 @@
         android:id="@+id/activeUsersFragment"
         android:name="com.gdsc_technion.gdsc_app.ActiveUsersFragment"
         android:label="Active Users"
-        tools:layout="@layout/fragment_active_users" >
+        tools:layout="@layout/fragment_active_users">
         <action
             android:id="@+id/action_activeUsersFragment_to_infoFragment"
             app:destination="@id/infoFragment" />
@@ -104,7 +107,7 @@
         android:id="@+id/eventAdminFragment"
         android:name="com.gdsc_technion.gdsc_app.EventAdminFragment"
         android:label="fragment_event_admin"
-        tools:layout="@layout/fragment_event_admin" >
+        tools:layout="@layout/fragment_event_admin">
         <action
             android:id="@+id/action_eventAdminFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
@@ -115,4 +118,13 @@
     <action
         android:id="@+id/action_global_loginFragment"
         app:destination="@id/loginFragment" />
+    <fragment
+        android:id="@+id/solutionChallengeFragment"
+        android:name="com.gdsc_technion.gdsc_app.SolutionChallengeFragment"
+        android:label="Solution Challenge"
+        tools:layout="@layout/fragment_solution_challenge">
+        <action
+            android:id="@+id/action_solutionChallengeFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+    </fragment>
 </navigation>

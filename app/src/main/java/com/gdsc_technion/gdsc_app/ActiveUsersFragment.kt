@@ -16,7 +16,7 @@ import java.util.*
  * create an instance of this fragment.
  */
 class ActiveUsersFragment : Fragment() {
-
+    private lateinit var docs: ArrayList<User>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +27,13 @@ class ActiveUsersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val docs = ArrayList<User>()
+        docs = ArrayList<User>()
         val textActiveUsers = view.findViewById<TextView>(R.id.activeUsersText)
         val textTotalActiveUsers = view.findViewById<TextView>(R.id.totalActiveUsersText)
+        updateActiveUsers(textTotalActiveUsers, textActiveUsers)
+    }
 
+    private fun updateActiveUsers(textTotalActiveUsers: TextView, textActiveUsers: TextView) {
         val db = FirebaseFirestore.getInstance()
         db.collection("users").get().addOnSuccessListener { documents ->
             for (doc in documents) {
@@ -60,11 +63,10 @@ class ActiveUsersFragment : Fragment() {
                         }
                     }
                 }
-
             }
             val total = "Total active users: $counter"
-            textTotalActiveUsers?.text = total
-            textActiveUsers?.text = textTmp.toString()
+            textTotalActiveUsers.text = total
+            textActiveUsers.text = textTmp.toString()
         }
     }
 }

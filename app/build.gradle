@@ -17,7 +17,7 @@ android {
         applicationId "com.gdsc_technion.gdsc_app"
         minSdk 21
         targetSdk 30
-        versionCode 7
+        versionCode 8
         versionName '1.1.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

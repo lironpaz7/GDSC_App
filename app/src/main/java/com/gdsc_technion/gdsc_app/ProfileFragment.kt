@@ -4,6 +4,8 @@ import android.app.ProgressDialog
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
 import android.text.TextUtils
 import android.view.*
 import android.widget.*
@@ -45,7 +47,7 @@ data class User(
 
 )
 
-class ProfileFragment(val choice: String? = null) : Fragment() {
+class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
     private var param1: String? = null
@@ -118,9 +120,12 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         val textName = view.findViewById<EditText>(R.id.profile_username)
         val textAge = view.findViewById<EditText>(R.id.profile_age)
+        textAge.filters = arrayOf<InputFilter>(MinMaxFilter(1, 100))
+
         val textInterests = view.findViewById<EditText>(R.id.profile_interests)
         val textDegree = view.findViewById<EditText>(R.id.profile_degree)
         val textDegreeYear = view.findViewById<EditText>(R.id.profile_degreeYear)
+        textDegreeYear.filters = arrayOf<InputFilter>(MinMaxFilter(1, 7))
 
 
         // read Firestore data base to update on create view
@@ -447,9 +452,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
             doc.age = textAge.text.toString()
             doc.interests = textInterests.text.toString()
-            if (choice != null) {
-                doc.degree = choice
-            }
             doc.degreeYear = textDegreeYear.text.toString()
 
             // update Firestore
@@ -476,8 +478,6 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
 
         // back button
         view.findViewById<Button>(R.id.profileBackButton).setOnClickListener {
-//            val navIndex = activity as FragmentNavigation
-//            navIndex.navigateFrag(IndexFragment(), false)
             findNavController().navigate(R.id.action_profileFragment_to_indexFragment)
         }
     }
@@ -485,6 +485,42 @@ class ProfileFragment(val choice: String? = null) : Fragment() {
     private fun setDefaultProfilePicture() {
         doc.imagePath = null
         profilePictureRef.setImageResource(R.drawable.profile)
+    }
+
+    inner class MinMaxFilter() : InputFilter {
+        private var intMin = 0
+        private var intMax = 0
+
+        // Initialized
+        constructor(minValue: Int, maxValue: Int) : this() {
+            this.intMin = minValue
+            this.intMax = maxValue
+        }
+
+        override fun filter(
+            source: CharSequence?,
+            start: Int,
+            end: Int,
+            dest: Spanned?,
+            dstart: Int,
+            dend: Int
+        ): CharSequence? {
+            try {
+                val input = Integer.parseInt(dest.toString() + source.toString())
+                if (isInRange(intMin, intMax, input)) {
+                    return null
+                }
+            } catch (e: NumberFormatException) {
+                e.printStackTrace()
+            }
+            return ""
+        }
+
+        // Check if input c is in between min a and max b and
+        // returns corresponding boolean
+        private fun isInRange(a: Int, b: Int, c: Int): Boolean {
+            return if (b > a) c in a..b else c in b..a
+        }
     }
 
     private fun uploadImage(path: Uri) {

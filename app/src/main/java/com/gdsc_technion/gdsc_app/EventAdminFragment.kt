@@ -30,14 +30,11 @@ class EventAdminFragment : DialogFragment() {
         binding.adminCreateBtn.setOnClickListener {
             AddEventFragment().show(requireActivity().supportFragmentManager, null)
             dismiss()
-//            val navAddEvent = activity as FragmentNavigation
-//            navAddEvent.navigateFrag(AddEventFragment(), true)
         }
 
         binding.adminDeleteBtn.setOnClickListener {
             DeleteEventFragment().show(requireActivity().supportFragmentManager, null)
             dismiss()
-//            Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show()
         }
 
         binding.adminEditBtn.setOnClickListener {

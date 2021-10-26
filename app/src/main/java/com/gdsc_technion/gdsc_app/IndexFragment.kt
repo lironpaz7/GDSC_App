@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -55,10 +54,9 @@ class IndexFragment : Fragment() {
         val storageReference = FirebaseStorage.getInstance().reference
         userName = userName.substring(0, userName.indexOf("@"))
         displayUser = "Welcome $userName"
-        view.findViewById<TextView>(R.id.index_username_welcome).setText(displayUser)
+        view.findViewById<TextView>(R.id.index_username_welcome).text = displayUser
 
         // change profile picture
-        val profilePicture = view.findViewById<ImageView>(R.id.index_profileButton)
         userName = fAuth.currentUser?.email.toString()
         val userNameFromMail = userName.substring(0, userName.indexOf("@"))
         val db = FirebaseFirestore.getInstance()
@@ -71,11 +69,11 @@ class IndexFragment : Fragment() {
                     val localFile = File.createTempFile("tempImage", "jpg")
                     sRef.getFile(localFile).addOnSuccessListener {
                         val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                        profilePicture.setImageBitmap(bitmap)
+                        profileButton.setImageBitmap(bitmap)
                     }.addOnFailureListener {
                     }
                 } else {
-                    profilePicture.setImageResource(R.drawable.profile)
+                    profileButton.setImageResource(R.drawable.profile)
                 }
             }
         }
@@ -98,21 +96,15 @@ class IndexFragment : Fragment() {
         }
 
         // solution challenge button
-        solutionChallengeButton.alpha =
-            ALPHA_OFF //remove when the solution challenge fragment is active
         solutionChallengeButton.setOnClickListener {
-            Toast.makeText(
-                context,
-                "Solution Challenge will be available soon...",
-                Toast.LENGTH_SHORT
-            ).show()
+            findNavController().navigate(R.id.action_indexFragment_to_solutionChallengeFragment)
         }
 
         // logout button
         view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(context, "Log out successful", Toast.LENGTH_SHORT).show()
-            Navigation.findNavController(view).navigate(R.id.action_indexFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_indexFragment_to_loginFragment)
         }
     }
 }
