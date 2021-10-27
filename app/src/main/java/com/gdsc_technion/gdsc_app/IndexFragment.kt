@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 
 
 /**
@@ -23,6 +25,7 @@ import java.io.File
 class IndexFragment : Fragment() {
 
     private lateinit var displayUser: String
+    private lateinit var profileButton: ImageView
     lateinit var fAuth: FirebaseAuth
 
 
@@ -43,7 +46,7 @@ class IndexFragment : Fragment() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         // buttons
 
-        val profileButton = view.findViewById<ImageView>(R.id.index_profileButton)
+        profileButton = view.findViewById(R.id.index_profileButton)
         val infoButton = view.findViewById<ImageButton>(R.id.infoButton)
         val eventsButton = view.findViewById<ImageButton>(R.id.eventsButton)
         val solutionChallengeButton = view.findViewById<ImageView>(R.id.solution_challenge_button)
@@ -65,13 +68,7 @@ class IndexFragment : Fragment() {
             val doc = docSnap.toObject(User::class.java)
             if (doc != null) {
                 if (doc.imagePath != null && doc.imagePath != "null") {
-                    val sRef = storageReference.child(doc.imagePath.toString())
-                    val localFile = File.createTempFile("tempImage", "jpg")
-                    sRef.getFile(localFile).addOnSuccessListener {
-                        val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                        profileButton.setImageBitmap(bitmap)
-                    }.addOnFailureListener {
-                    }
+                    loadImageFromStorage(doc.imagePath.toString())
                 } else {
                     profileButton.setImageResource(R.drawable.profile)
                 }
@@ -96,8 +93,14 @@ class IndexFragment : Fragment() {
         }
 
         // solution challenge button
+        solutionChallengeButton.alpha = ALPHA_OFF
         solutionChallengeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_indexFragment_to_solutionChallengeFragment)
+//            findNavController().navigate(R.id.action_indexFragment_to_solutionChallengeFragment)
+            Toast.makeText(
+                context,
+                "Solution Challenge will be available soon...",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         // logout button
@@ -105,6 +108,16 @@ class IndexFragment : Fragment() {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(context, "Log out successful", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_indexFragment_to_loginFragment)
+        }
+    }
+
+    private fun loadImageFromStorage(path: String) {
+        try {
+            val f = File(path, "profile.jpg")
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+            profileButton.setImageBitmap(b)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
         }
     }
 }

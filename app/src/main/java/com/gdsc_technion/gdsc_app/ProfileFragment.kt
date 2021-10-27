@@ -1,12 +1,16 @@
 package com.gdsc_technion.gdsc_app
 
-import android.app.ProgressDialog
+import android.content.Context
+import android.content.ContextWrapper
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.InputFilter
 import android.text.Spanned
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
@@ -15,15 +19,12 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
-import java.io.File
+import java.io.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -48,10 +49,6 @@ data class User(
 )
 
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var fAuth: FirebaseAuth
     private lateinit var userEmail: String
     private lateinit var doc: User
@@ -74,7 +71,7 @@ class ProfileFragment : Fragment() {
                 if (uri != null) {
                     profilePictureRef.setImageURI(uri)
                     uriRef = uri
-//                    Log.d("URI_LOCAL", path)
+                    Log.d("URI_LOCAL", uri.path.toString())
                 }
             }
 
@@ -171,13 +168,7 @@ class ProfileFragment : Fragment() {
 
             // updates profile picture
             if (doc.imagePath != null && doc.imagePath != "null") {
-                val sRef = storageReference.child(doc.imagePath.toString())
-                val localFile = File.createTempFile("tempImage", "jpg")
-                sRef.getFile(localFile).addOnSuccessListener {
-                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                    profilePictureRef.setImageBitmap(bitmap)
-                }.addOnFailureListener {
-                }
+                loadImageFromStorage(doc.imagePath.toString())
             } else {
                 setDefaultProfilePicture()
             }
@@ -456,8 +447,11 @@ class ProfileFragment : Fragment() {
 
             // update Firestore
             uriRef?.let {
-                doc.imagePath = "profile_images/$userEmail"
-                uploadImage(it)
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, it)
+                val path = saveToInternalStorage(bitmap)
+                doc.imagePath = path
+                addUploadRecord()
             }
 
             docRef.update(
@@ -523,43 +517,42 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun uploadImage(path: Uri) {
-        val ref = storageReference.child("profile_images/$userEmail")
-        val uploadTask = ref.putFile(path)
 
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Loading...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-
-        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
-                }
-            }
-
-            if (progressDialog.isShowing) {
-                progressDialog.dismiss()
-            }
-            return@Continuation ref.downloadUrl
-        }).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                if (progressDialog.isShowing) {
-                    progressDialog.dismiss()
-                }
-
-                addUploadRecord("profile_images/$userEmail")
-            }
-        }.addOnFailureListener {
-        }
+    private fun addUploadRecord() {
+        docRef.update("imagePath", doc.imagePath)
 
     }
 
-    private fun addUploadRecord(imagePath: String) {
-        doc.imagePath = imagePath
-        docRef.update("imagePath", doc.imagePath)
-//        Log.d("Generated image link", "${doc.imagePath}")
+    private fun saveToInternalStorage(bitmapImage: Bitmap): String? {
+        val cw = ContextWrapper(requireContext())
+        // path to /data/data/yourapp/app_data/imageDir
+        val directory = cw.getDir("imageDir", Context.MODE_PRIVATE)
+        // Create imageDir
+        val mypath = File(directory, "profile.jpg")
+        var fos: FileOutputStream? = null
+        try {
+            fos = FileOutputStream(mypath)
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            try {
+                fos?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return directory.absolutePath
+    }
 
+    private fun loadImageFromStorage(path: String) {
+        try {
+            val f = File(path, "profile.jpg")
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+            profilePictureRef.setImageBitmap(b)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
     }
 }
