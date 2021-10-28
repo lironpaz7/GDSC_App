@@ -44,21 +44,21 @@ class ActiveUsersFragment : Fragment() {
 
             for (doc in docs) {
                 if (doc.shareMyInfo != null && doc.shareMyInfo == "yes") {
-                    if (doc.name != null) {
+                    if (doc.name != null && !doc.name.equals("")) {
                         counter++
                         textTmp.append("#$counter:\n")
-                        textTmp.append("\tName: ${doc.name}\n")
-                        if (doc.age != null) {
-                            textTmp.append("\tAge: ${doc.age}\n")
-                            if (doc.degree != null && doc.degree != "") {
-                                textTmp.append("\tDegree: ${doc.degree}\n")
-                                if (doc.degreeYear != null && doc.degreeYear != "") {
-                                    textTmp.append("\tYear: ${doc.degreeYear}")
+                        textTmp.append("Name: ${doc.name}\n")
+                        if (doc.age != null && !doc.age.equals("")) {
+                            textTmp.append("Age: ${doc.age}\n")
+                            if (doc.degree != null && !doc.degree.equals("")) {
+                                textTmp.append("Degree: ${doc.degree}\n")
+                                if (doc.degreeYear != null && !doc.degreeYear.equals("")) {
+                                    textTmp.append("Year: ${doc.degreeYear}")
                                 }
                                 textTmp.append("\n")
                             }
-                            if (doc.interests != null) {
-                                textTmp.append("\tInterests: ${doc.interests}\n\n")
+                            if (doc.interests != null && !doc.interests.equals("")) {
+                                textTmp.append("Interests: ${doc.interests}\n\n")
                             }
                         }
                     }

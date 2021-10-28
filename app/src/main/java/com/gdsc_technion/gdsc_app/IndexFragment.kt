@@ -1,5 +1,7 @@
 package com.gdsc_technion.gdsc_app
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -25,6 +25,7 @@ import java.io.FileNotFoundException
 class IndexFragment : Fragment() {
 
     private lateinit var displayUser: String
+
     private lateinit var profileButton: ImageView
     lateinit var fAuth: FirebaseAuth
 
@@ -54,26 +55,15 @@ class IndexFragment : Fragment() {
         // extract user name to display on screen
         fAuth = FirebaseAuth.getInstance()
         var userName = fAuth.currentUser?.email.toString()
-        val storageReference = FirebaseStorage.getInstance().reference
         userName = userName.substring(0, userName.indexOf("@"))
         displayUser = "Welcome $userName"
         view.findViewById<TextView>(R.id.index_username_welcome).text = displayUser
 
-        // change profile picture
-        userName = fAuth.currentUser?.email.toString()
-        val userNameFromMail = userName.substring(0, userName.indexOf("@"))
-        val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(userName).get().addOnSuccessListener { docSnap ->
-            //get data class object for easy data assignment
-            val doc = docSnap.toObject(User::class.java)
-            if (doc != null) {
-                if (doc.imagePath != null && doc.imagePath != "null") {
-                    loadImageFromStorage(doc.imagePath.toString())
-                } else {
-                    profileButton.setImageResource(R.drawable.profile)
-                }
-            }
-        }
+        // load profile picture
+        val cw = ContextWrapper(requireContext())
+        // path to /data/data/yourapp/app_data/imageDir
+        val imagePath = cw.getDir("imageDir", Context.MODE_PRIVATE).absolutePath
+        loadImageFromStorage(imagePath)
 
         //profile button
         profileButton.setOnClickListener {
@@ -111,6 +101,10 @@ class IndexFragment : Fragment() {
         }
     }
 
+    private fun setDefaultProfilePicture() {
+        profileButton.setImageResource(R.drawable.profile)
+    }
+
     private fun loadImageFromStorage(path: String) {
         try {
             val f = File(path, "profile.jpg")
@@ -118,6 +112,7 @@ class IndexFragment : Fragment() {
             profileButton.setImageBitmap(b)
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
+            setDefaultProfilePicture()
         }
     }
 }

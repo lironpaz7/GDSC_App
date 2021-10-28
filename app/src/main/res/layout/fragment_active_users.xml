@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background_2"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp"
     tools:context="com.gdsc_technion.gdsc_app.ActiveUsersFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Active Users"
             android:textAlignment="center"
-            android:textSize="36dp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -41,8 +41,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:id="@+id/activeUsersText"
@@ -50,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </ScrollView>
         </RelativeLayout>
     </LinearLayout>
