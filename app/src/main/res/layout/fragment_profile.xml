@@ -22,7 +22,7 @@
             android:layout_centerInParent="true"
             android:fontFamily="sans-serif-light"
             android:text="User Profile"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

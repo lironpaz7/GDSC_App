@@ -11,8 +11,11 @@
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/activity_info.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/app_bar_events.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/blank_view.xml" value="0.14673913043478262" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_events.xml" value="0.1" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/content_scrolling.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/current_view.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/default_view.xml" value="0.14673913043478262" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_active_users.xml" value="0.1" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_add_event.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/fragment_calender.xml" value="0.22" />
@@ -40,6 +43,7 @@
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/item_delete_event.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/nav_header_events.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/popup_layout.xml" value="0.13949275362318841" />
+        <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/layout/present_view.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/activity_events2_drawer.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/events.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Liron/AndroidStudioProjects/GDSC_App/app/src/main/res/menu/menu_info.xml" value="0.17552083333333332" />

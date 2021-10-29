@@ -106,8 +106,8 @@
             android:id="@+id/solutionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Solution\nChallenge"
-            android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -130,6 +130,7 @@
             android:id="@+id/infoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Info"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -154,6 +155,7 @@
             android:id="@+id/eventsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Events"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -167,7 +169,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingVertical="8dp">
 
         <ImageView
@@ -179,7 +181,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/technion_logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
