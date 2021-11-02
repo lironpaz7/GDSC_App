@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener
 import org.naishadhparmar.zcustomcalendar.Property
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.collections.set
 
@@ -79,10 +77,8 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
         addToCalendarBtn = binding.calendarCurrentAddToCalendarBtn
         descHashMap = HashMap()
         dateHashMap = HashMap()
-
-        initializeCalendar()
-
-
+        upcomingEventsTable = ArrayList()
+        calendar = Calendar.getInstance()
 
         fAuth = FirebaseAuth.getInstance()
         val userName = fAuth.currentUser?.email.toString()
@@ -99,8 +95,6 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
         adminButton.setOnClickListener {
             EventAdminFragment().show(requireActivity().supportFragmentManager, null)
         }
-
-        upcomingEventsTable = ArrayList()
 
         val currentDateTitle = view.findViewById<TextView>(R.id.calendar_current_title)
         currentDateContent = view.findViewById(R.id.calendar_current_content)
@@ -143,7 +137,6 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
                 upcomingEventsTable.sortBy {
                     it.dateFormat
                 }
-
                 //update upcoming events
                 val textTmp = StringBuilder()
                 for (event in upcomingEventsTable) {
@@ -151,8 +144,9 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
                 }
                 calenderUpcomingEvents.text = textTmp.toString()
             }
-
+            initializeCalendar()
         }
+
 
         // CustomCalendar setup
         customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, this);
@@ -172,6 +166,7 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
 
         // today button
         todayBtn.setOnClickListener {
+            dateHashMap.putAll(updateCalenderMonth(calendar.get(Calendar.MONTH)))
             customCalendar.setDate(calendar, dateHashMap)
             currentDateSelected = todayPresentationFormat
             currentDateTitle.text = todayPresentationFormat
@@ -217,7 +212,6 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
     }
 
     private fun initializeCalendar() {
-
         val defaultProperty = Property()
         defaultProperty.layoutResource = R.layout.default_view
         defaultProperty.dateTextViewResource = R.id.calendar_textview
@@ -239,10 +233,10 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
 //        descHashMap["blank"] = blankProperty
 
         customCalendar.setMapDescToProp(descHashMap)
-        calendar = Calendar.getInstance()
         dateHashMap[calendar.get(Calendar.DAY_OF_MONTH)] = "current"
 
         // set date
+        dateHashMap.putAll(updateCalenderMonth(calendar.get(Calendar.MONTH)))
         customCalendar.setDate(calendar, dateHashMap)
 
     }
@@ -316,7 +310,7 @@ class CalendarFragment : Fragment(), OnNavigationButtonClickedListener {
                 val timeInMillis = customCalendar.selectedDate.timeInMillis
                 val currentYear = dateParser.format(timeInMillis).split("/")[2].toInt()
 
-                Log.d("year: ", dYear.toString())
+//                Log.d("year: ", dYear.toString())
 
                 if (month + 1 == dMonth && currentYear == dYear) {
                     map[dDay] = "event"

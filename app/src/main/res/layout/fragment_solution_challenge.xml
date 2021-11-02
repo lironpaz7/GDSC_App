@@ -29,26 +29,86 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/solution_challenge_title">
 
-        <Button
-            android:id="@+id/solution_challenge_rules_btn"
+        <LinearLayout
+            android:id="@+id/solution_challenge_left_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rules"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/solution_challenge_challenges_btn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toLeftOf="@id/solution_challenge_right_layout"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/solution_challenge_challenges_btn"
+            <Button
+                android:id="@+id/solution_challenge_overview_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Overview" />
+
+            <Button
+                android:id="@+id/solution_challenge_prizes_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Prizes" />
+
+            <Button
+                android:id="@+id/solution_challenge_judging_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Judging" />
+
+            <Button
+                android:id="@+id/solution_challenge_timeline_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Timeline" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/solution_challenge_right_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:text="Challenges"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/solution_challenge_rules_btn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toRightOf="@id/solution_challenge_left_layout"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <Button
+                android:id="@+id/solution_challenge_videos_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Videos" />
+
+            <Button
+                android:id="@+id/solution_challenge_resources_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Resources" />
+
+            <Button
+                android:id="@+id/solution_challenge_faqs_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Faqs" />
+
+            <Button
+                android:id="@+id/solution_challenge_lookback_btn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Look back" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
